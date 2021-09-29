@@ -26,16 +26,8 @@ namespace ClipboardTurbo {
         private void InitializeComponent() {
             this.tcClipboard = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.lvInformation = new System.Windows.Forms.ListView();
-            this.btnDelete = new System.Windows.Forms.Button();
-            this.btnEdit = new System.Windows.Forms.Button();
-            this.btnNew = new System.Windows.Forms.Button();
-            this.tbValue = new System.Windows.Forms.TextBox();
-            this.lbValue = new System.Windows.Forms.Label();
-            this.tbInformation = new System.Windows.Forms.TextBox();
-            this.lbInformation = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.btnAdd = new System.Windows.Forms.Button();
+            this.clipboardUserControl1 = new ClipboardTurbo.View.ClipboardUserControl();
             this.tcClipboard.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.SuspendLayout();
@@ -52,15 +44,7 @@ namespace ClipboardTurbo {
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.btnAdd);
-            this.tabPage1.Controls.Add(this.lvInformation);
-            this.tabPage1.Controls.Add(this.btnDelete);
-            this.tabPage1.Controls.Add(this.btnEdit);
-            this.tabPage1.Controls.Add(this.btnNew);
-            this.tabPage1.Controls.Add(this.tbValue);
-            this.tabPage1.Controls.Add(this.lbValue);
-            this.tabPage1.Controls.Add(this.tbInformation);
-            this.tabPage1.Controls.Add(this.lbInformation);
+            this.tabPage1.Controls.Add(this.clipboardUserControl1);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -68,74 +52,6 @@ namespace ClipboardTurbo {
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // lvInformation
-            // 
-            this.lvInformation.HideSelection = false;
-            this.lvInformation.Location = new System.Drawing.Point(6, 6);
-            this.lvInformation.Name = "lvInformation";
-            this.lvInformation.Size = new System.Drawing.Size(580, 459);
-            this.lvInformation.TabIndex = 7;
-            this.lvInformation.UseCompatibleStateImageBehavior = false;
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.Location = new System.Drawing.Point(595, 264);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(198, 34);
-            this.btnDelete.TabIndex = 6;
-            this.btnDelete.Text = "Delete";
-            this.btnDelete.UseVisualStyleBackColor = true;
-            // 
-            // btnEdit
-            // 
-            this.btnEdit.Location = new System.Drawing.Point(595, 224);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(198, 34);
-            this.btnEdit.TabIndex = 5;
-            this.btnEdit.Text = "Edit";
-            this.btnEdit.UseVisualStyleBackColor = true;
-            // 
-            // btnNew
-            // 
-            this.btnNew.Location = new System.Drawing.Point(595, 184);
-            this.btnNew.Name = "btnNew";
-            this.btnNew.Size = new System.Drawing.Size(198, 34);
-            this.btnNew.TabIndex = 4;
-            this.btnNew.Text = "New";
-            this.btnNew.UseVisualStyleBackColor = true;
-            // 
-            // tbValue
-            // 
-            this.tbValue.Location = new System.Drawing.Point(595, 89);
-            this.tbValue.Name = "tbValue";
-            this.tbValue.Size = new System.Drawing.Size(198, 20);
-            this.tbValue.TabIndex = 3;
-            // 
-            // lbValue
-            // 
-            this.lbValue.AutoSize = true;
-            this.lbValue.Location = new System.Drawing.Point(592, 73);
-            this.lbValue.Name = "lbValue";
-            this.lbValue.Size = new System.Drawing.Size(34, 13);
-            this.lbValue.TabIndex = 2;
-            this.lbValue.Text = "Value";
-            // 
-            // tbInformation
-            // 
-            this.tbInformation.Location = new System.Drawing.Point(595, 44);
-            this.tbInformation.Name = "tbInformation";
-            this.tbInformation.Size = new System.Drawing.Size(198, 20);
-            this.tbInformation.TabIndex = 1;
-            // 
-            // lbInformation
-            // 
-            this.lbInformation.AutoSize = true;
-            this.lbInformation.Location = new System.Drawing.Point(592, 28);
-            this.lbInformation.Name = "lbInformation";
-            this.lbInformation.Size = new System.Drawing.Size(59, 13);
-            this.lbInformation.TabIndex = 0;
-            this.lbInformation.Text = "Information";
             // 
             // tabPage2
             // 
@@ -147,17 +63,14 @@ namespace ClipboardTurbo {
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // btnAdd
+            // clipboardUserControl1
             // 
-            this.btnAdd.Location = new System.Drawing.Point(654, 115);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(75, 23);
-            this.btnAdd.TabIndex = 8;
-            this.btnAdd.Text = "Add";
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            this.clipboardUserControl1.Location = new System.Drawing.Point(0, 0);
+            this.clipboardUserControl1.Name = "clipboardUserControl1";
+            this.clipboardUserControl1.Size = new System.Drawing.Size(818, 500);
+            this.clipboardUserControl1.TabIndex = 0;
             // 
-            // MainForm
+            // Clipboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -167,7 +80,6 @@ namespace ClipboardTurbo {
             this.Text = "Clipboard Turbo";
             this.tcClipboard.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -177,15 +89,7 @@ namespace ClipboardTurbo {
         private System.Windows.Forms.TabControl tcClipboard;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.Button btnDelete;
-        private System.Windows.Forms.Button btnEdit;
-        private System.Windows.Forms.Button btnNew;
-        private System.Windows.Forms.TextBox tbValue;
-        private System.Windows.Forms.Label lbValue;
-        private System.Windows.Forms.TextBox tbInformation;
-        private System.Windows.Forms.Label lbInformation;
-        private System.Windows.Forms.ListView lvInformation;
-        private System.Windows.Forms.Button btnAdd;
+        private View.ClipboardUserControl clipboardUserControl1;
     }
 }
 

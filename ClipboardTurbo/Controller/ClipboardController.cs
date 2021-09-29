@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ClipboardTurbo.Controller;
 using System.Windows.Forms;
+using ClipboardTurbo.View;
+using ClipboardTurbo.Controller;
 
 namespace ClipboardTurbo.Controller {
-    internal class ClipboardController{
+    public class ClipboardController{
 
         List<Information> InformationList;
 
