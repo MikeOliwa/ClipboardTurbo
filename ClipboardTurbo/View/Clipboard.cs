@@ -12,17 +12,13 @@ using ClipboardTurbo.Controller;
 namespace ClipboardTurbo {
     public partial class Clipboard : Form {
 
-        public static Controller.SettingsController settingsController;
-        public static Controller.ClipboardController clipboardController;
-
         public Clipboard() {
             InitializeComponent();
+            this.TopMost = true;
             tcClipboard.TabPages[0].Text = "Clipboard";
             tcClipboard.TabPages[1].Text = "Settings";
             tcClipboard.Refresh();
 
-            settingsController = new Controller.SettingsController();
-            clipboardController = new Controller.ClipboardController();
 
         }
 

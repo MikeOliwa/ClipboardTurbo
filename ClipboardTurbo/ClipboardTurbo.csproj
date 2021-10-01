@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Controller\ClipboardController.cs" />
     <Compile Include="Controller\SettingsController.cs" />
+    <Compile Include="Model\Config.cs" />
     <Compile Include="Model\Information.cs" />
     <Compile Include="View\Clipboard.cs">
       <SubType>Form</SubType>

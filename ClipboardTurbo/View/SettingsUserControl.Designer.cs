@@ -28,10 +28,11 @@ namespace ClipboardTurbo.View {
             // 
             // SettingsUserControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.Name = "SettingsUserControl";
-            this.Size = new System.Drawing.Size(390, 254);
+            this.Size = new System.Drawing.Size(1143, 962);
             this.Load += new System.EventHandler(this.SettingsUserControl_Load);
             this.ResumeLayout(false);
 

@@ -12,10 +12,10 @@ namespace ClipboardTurbo.Controller {
 
         private string appdataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
         private string configfilePath;
-        private string configfileName = "config.xml";
+        private string configfileName = "ClipboardTurbo_Settings.xml";
 
-        private static XmlSerializer serializer = new XmlSerializer(typeof(List<Information>));
-        private static XmlSerializer deserializer = new XmlSerializer(typeof(List<Information>));
+        private static XmlSerializer serializer = new XmlSerializer(typeof(List<Config>));
+        private static XmlSerializer deserializer = new XmlSerializer(typeof(List<Config>));
 
         public SettingsController()
         {

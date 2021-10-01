@@ -24,7 +24,7 @@ namespace ClipboardTurbo.View {
         /// Der Inhalt der Methode darf nicht mit dem Code-Editor geändert werden.
         /// </summary>
         private void InitializeComponent() {
-            this.btnAdd = new System.Windows.Forms.Button();
+            this.btnApply = new System.Windows.Forms.Button();
             this.lvInformation = new System.Windows.Forms.ListView();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
@@ -33,91 +33,115 @@ namespace ClipboardTurbo.View {
             this.lbValue = new System.Windows.Forms.Label();
             this.tbInformation = new System.Windows.Forms.TextBox();
             this.lbInformation = new System.Windows.Forms.Label();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // btnAdd
+            // btnApply
             // 
-            this.btnAdd.Location = new System.Drawing.Point(664, 127);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(75, 23);
-            this.btnAdd.TabIndex = 17;
-            this.btnAdd.Text = "Add";
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            this.btnApply.Location = new System.Drawing.Point(696, 205);
+            this.btnApply.Margin = new System.Windows.Forms.Padding(6);
+            this.btnApply.Name = "btnApply";
+            this.btnApply.Size = new System.Drawing.Size(186, 44);
+            this.btnApply.TabIndex = 17;
+            this.btnApply.Text = "Apply";
+            this.btnApply.UseVisualStyleBackColor = true;
+            this.btnApply.Click += new System.EventHandler(this.btnApply_Click);
             // 
             // lvInformation
             // 
+            this.lvInformation.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lvInformation.HideSelection = false;
-            this.lvInformation.Location = new System.Drawing.Point(16, 18);
+            this.lvInformation.LabelWrap = false;
+            this.lvInformation.Location = new System.Drawing.Point(32, 35);
+            this.lvInformation.Margin = new System.Windows.Forms.Padding(6);
             this.lvInformation.Name = "lvInformation";
-            this.lvInformation.Size = new System.Drawing.Size(580, 459);
+            this.lvInformation.Scrollable = false;
+            this.lvInformation.Size = new System.Drawing.Size(632, 879);
             this.lvInformation.TabIndex = 16;
             this.lvInformation.UseCompatibleStateImageBehavior = false;
+            this.lvInformation.SelectedIndexChanged += new System.EventHandler(this.lvInformation_SelectedIndexChanged);
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(605, 276);
+            this.btnDelete.Location = new System.Drawing.Point(697, 489);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(6);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(198, 34);
+            this.btnDelete.Size = new System.Drawing.Size(396, 65);
             this.btnDelete.TabIndex = 15;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(605, 236);
+            this.btnEdit.Location = new System.Drawing.Point(697, 412);
+            this.btnEdit.Margin = new System.Windows.Forms.Padding(6);
             this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(198, 34);
+            this.btnEdit.Size = new System.Drawing.Size(396, 65);
             this.btnEdit.TabIndex = 14;
             this.btnEdit.Text = "Edit";
             this.btnEdit.UseVisualStyleBackColor = true;
             // 
             // btnNew
             // 
-            this.btnNew.Location = new System.Drawing.Point(605, 196);
+            this.btnNew.Location = new System.Drawing.Point(697, 335);
+            this.btnNew.Margin = new System.Windows.Forms.Padding(6);
             this.btnNew.Name = "btnNew";
-            this.btnNew.Size = new System.Drawing.Size(198, 34);
+            this.btnNew.Size = new System.Drawing.Size(396, 65);
             this.btnNew.TabIndex = 13;
             this.btnNew.Text = "New";
             this.btnNew.UseVisualStyleBackColor = true;
             // 
             // tbValue
             // 
-            this.tbValue.Location = new System.Drawing.Point(605, 101);
+            this.tbValue.Location = new System.Drawing.Point(697, 152);
+            this.tbValue.Margin = new System.Windows.Forms.Padding(6);
             this.tbValue.Name = "tbValue";
-            this.tbValue.Size = new System.Drawing.Size(198, 20);
+            this.tbValue.Size = new System.Drawing.Size(392, 31);
             this.tbValue.TabIndex = 12;
             // 
             // lbValue
             // 
             this.lbValue.AutoSize = true;
-            this.lbValue.Location = new System.Drawing.Point(602, 85);
+            this.lbValue.Location = new System.Drawing.Point(691, 121);
+            this.lbValue.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lbValue.Name = "lbValue";
-            this.lbValue.Size = new System.Drawing.Size(34, 13);
+            this.lbValue.Size = new System.Drawing.Size(67, 25);
             this.lbValue.TabIndex = 11;
             this.lbValue.Text = "Value";
             // 
             // tbInformation
             // 
-            this.tbInformation.Location = new System.Drawing.Point(605, 56);
+            this.tbInformation.Location = new System.Drawing.Point(697, 66);
+            this.tbInformation.Margin = new System.Windows.Forms.Padding(6);
             this.tbInformation.Name = "tbInformation";
-            this.tbInformation.Size = new System.Drawing.Size(198, 20);
+            this.tbInformation.Size = new System.Drawing.Size(392, 31);
             this.tbInformation.TabIndex = 10;
             // 
             // lbInformation
             // 
             this.lbInformation.AutoSize = true;
-            this.lbInformation.Location = new System.Drawing.Point(602, 40);
+            this.lbInformation.Location = new System.Drawing.Point(691, 35);
+            this.lbInformation.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lbInformation.Name = "lbInformation";
-            this.lbInformation.Size = new System.Drawing.Size(59, 13);
+            this.lbInformation.Size = new System.Drawing.Size(118, 25);
             this.lbInformation.TabIndex = 9;
             this.lbInformation.Text = "Information";
             // 
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(903, 205);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(186, 44);
+            this.btnCancel.TabIndex = 18;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            // 
             // ClipboardUserControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.btnAdd);
+            this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.btnApply);
             this.Controls.Add(this.lvInformation);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnEdit);
@@ -126,8 +150,9 @@ namespace ClipboardTurbo.View {
             this.Controls.Add(this.lbValue);
             this.Controls.Add(this.tbInformation);
             this.Controls.Add(this.lbInformation);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "ClipboardUserControl";
-            this.Size = new System.Drawing.Size(818, 500);
+            this.Size = new System.Drawing.Size(1143, 962);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -135,7 +160,7 @@ namespace ClipboardTurbo.View {
 
         #endregion
 
-        private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.Button btnApply;
         private System.Windows.Forms.ListView lvInformation;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnEdit;
@@ -144,5 +169,6 @@ namespace ClipboardTurbo.View {
         private System.Windows.Forms.Label lbValue;
         private System.Windows.Forms.TextBox tbInformation;
         private System.Windows.Forms.Label lbInformation;
+        private System.Windows.Forms.Button btnCancel;
     }
 }
