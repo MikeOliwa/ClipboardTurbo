@@ -14,7 +14,7 @@ namespace ClipboardTurbo {
 
         public Clipboard() {
             InitializeComponent();
-            this.TopMost = true;
+            //this.TopMost = true;
             tcClipboard.TabPages[0].Text = "Clipboard";
             tcClipboard.TabPages[1].Text = "Settings";
             tcClipboard.Refresh();

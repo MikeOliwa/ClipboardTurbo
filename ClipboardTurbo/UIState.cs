@@ -5,10 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ClipboardTurbo {
-    public class Information {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Value { get; set; }
-
+    public enum UIState {
+        New,
+        Edit,
+        Delete,
+        Selected,
+        None
     }
 }

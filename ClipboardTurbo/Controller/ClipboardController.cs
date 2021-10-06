@@ -52,9 +52,38 @@ namespace ClipboardTurbo.Controller {
             }
         }
 
-        public bool AddInformation(string name, string value) {
+        public int GetNextId() {
+            //InformationList = ReadInformation();
+            //int highestId = 0;
+
+            //foreach(Information information in InformationList) {
+            //    if(highestId < information.Id) {
+            //        highestId = information.Id;
+            //    }
+            //}
+
+            //return highestId + 1;
+
+            if(InformationList.Count == 0) {
+                return 0;
+            } else {
+            return InformationList.Last().Id + 1;
+            }
+        }
+
+        public void SetIds() {
+            int id = 0;
+            ReadInformation();
+            foreach(Information information in InformationList) {
+                information.Id = id;
+                id++;
+            }
+            WriteInformation(InformationList);
+        }
+
+        public bool AddInformation(int id, string name, string value) {
             InformationList = ReadInformation();
-            Information information = new Information { Name = name, Value = value };
+            Information information = new Information {Id = id, Name = name, Value = value };
             if (!CheckInformationExists(information)) {
                 InformationList.Add(information);
                 WriteInformation(InformationList);
@@ -63,6 +92,32 @@ namespace ClipboardTurbo.Controller {
                 MessageBox.Show($"Information ({name}) already exists.","Duplicate information",MessageBoxButtons.OK,MessageBoxIcon.Information);
                 return false;
             }
+        }
+
+        public bool EditInformation(int id,string name, string value) {
+            InformationList = ReadInformation();
+            foreach(Information information in InformationList){
+                if (information.Id == id) {
+                    information.Name = name;
+                    information.Value = value;
+                    WriteInformation(InformationList);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public bool DeleteInformation(int id) {
+            InformationList = ReadInformation();
+            foreach (Information information in InformationList) {
+                if (information.Id == id) {
+                    InformationList.RemoveAt(id);
+                    SetIds();
+                    WriteInformation(InformationList);
+                    return true;
+                }
+            }
+            return false;
         }
 
         public void WriteInformation(List<Information> information) {
@@ -86,18 +141,21 @@ namespace ClipboardTurbo.Controller {
             return false;
         }
 
-        public string GetValueOfInformation(string name) {
+        public string GetValueOfInformation(int id) {
             string result = String.Empty;
             foreach(Information information in InformationList) {
-                if(information.Name == name) {
+                if(information.Id == id) {
                     result = information.Value;
+                    CopyToClipboard(result);
                 }
             }
             return result;
         }
 
         public void CopyToClipboard(string text) {
-            System.Windows.Forms.Clipboard.SetText(text);
+            if(text != null || text.Equals(String.Empty)) {
+                System.Windows.Forms.Clipboard.SetText(text);
+            }
         }
 
     }

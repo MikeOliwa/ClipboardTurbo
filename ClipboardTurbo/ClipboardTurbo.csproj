@@ -50,6 +50,7 @@
     <Compile Include="Controller\SettingsController.cs" />
     <Compile Include="Model\Config.cs" />
     <Compile Include="Model\Information.cs" />
+    <Compile Include="UIState.cs" />
     <Compile Include="View\Clipboard.cs">
       <SubType>Form</SubType>
     </Compile>
