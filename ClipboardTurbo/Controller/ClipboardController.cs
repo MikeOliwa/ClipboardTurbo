@@ -59,8 +59,7 @@ namespace ClipboardTurbo.Controller {
                 InformationList.Add(information);
                 WriteInformation(InformationList);
                 return true;
-            }
-            else {
+            } else {
                 MessageBox.Show($"Information ({name}) already exists.","Duplicate information",MessageBoxButtons.OK,MessageBoxIcon.Information);
                 return false;
             }

@@ -36,6 +36,8 @@ namespace ClipboardTurbo.View {
                 tbInformation.Text = lvInformation.FocusedItem.Text;
                 string value = _clipboardController.GetValueOfInformation(lvInformation.FocusedItem.Text);
                 tbValue.Text = value;
+                btnEdit.Enabled = true;
+                btnDelete.Enabled = true;
                 _clipboardController.CopyToClipboard(value);
             } else if (lvInformation.SelectedItems.Count > 1) {
                 tbInformation.Text = String.Empty;

@@ -38,10 +38,10 @@ namespace ClipboardTurbo.View {
             // 
             // btnApply
             // 
-            this.btnApply.Location = new System.Drawing.Point(696, 205);
-            this.btnApply.Margin = new System.Windows.Forms.Padding(6);
+            this.btnApply.Enabled = false;
+            this.btnApply.Location = new System.Drawing.Point(348, 107);
             this.btnApply.Name = "btnApply";
-            this.btnApply.Size = new System.Drawing.Size(186, 44);
+            this.btnApply.Size = new System.Drawing.Size(93, 23);
             this.btnApply.TabIndex = 17;
             this.btnApply.Text = "Apply";
             this.btnApply.UseVisualStyleBackColor = true;
@@ -52,93 +52,91 @@ namespace ClipboardTurbo.View {
             this.lvInformation.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lvInformation.HideSelection = false;
             this.lvInformation.LabelWrap = false;
-            this.lvInformation.Location = new System.Drawing.Point(32, 35);
-            this.lvInformation.Margin = new System.Windows.Forms.Padding(6);
+            this.lvInformation.Location = new System.Drawing.Point(16, 18);
             this.lvInformation.Name = "lvInformation";
             this.lvInformation.Scrollable = false;
-            this.lvInformation.Size = new System.Drawing.Size(632, 879);
+            this.lvInformation.Size = new System.Drawing.Size(318, 459);
             this.lvInformation.TabIndex = 16;
             this.lvInformation.UseCompatibleStateImageBehavior = false;
             this.lvInformation.SelectedIndexChanged += new System.EventHandler(this.lvInformation_SelectedIndexChanged);
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(697, 489);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(6);
+            this.btnDelete.Enabled = false;
+            this.btnDelete.Location = new System.Drawing.Point(348, 254);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(396, 65);
+            this.btnDelete.Size = new System.Drawing.Size(198, 34);
             this.btnDelete.TabIndex = 15;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(697, 412);
-            this.btnEdit.Margin = new System.Windows.Forms.Padding(6);
+            this.btnEdit.Enabled = false;
+            this.btnEdit.Location = new System.Drawing.Point(348, 214);
             this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(396, 65);
+            this.btnEdit.Size = new System.Drawing.Size(198, 34);
             this.btnEdit.TabIndex = 14;
             this.btnEdit.Text = "Edit";
             this.btnEdit.UseVisualStyleBackColor = true;
             // 
             // btnNew
             // 
-            this.btnNew.Location = new System.Drawing.Point(697, 335);
-            this.btnNew.Margin = new System.Windows.Forms.Padding(6);
+            this.btnNew.Location = new System.Drawing.Point(348, 174);
             this.btnNew.Name = "btnNew";
-            this.btnNew.Size = new System.Drawing.Size(396, 65);
+            this.btnNew.Size = new System.Drawing.Size(198, 34);
             this.btnNew.TabIndex = 13;
             this.btnNew.Text = "New";
             this.btnNew.UseVisualStyleBackColor = true;
             // 
             // tbValue
             // 
-            this.tbValue.Location = new System.Drawing.Point(697, 152);
-            this.tbValue.Margin = new System.Windows.Forms.Padding(6);
+            this.tbValue.Enabled = false;
+            this.tbValue.Location = new System.Drawing.Point(348, 79);
             this.tbValue.Name = "tbValue";
-            this.tbValue.Size = new System.Drawing.Size(392, 31);
+            this.tbValue.Size = new System.Drawing.Size(198, 20);
             this.tbValue.TabIndex = 12;
             // 
             // lbValue
             // 
             this.lbValue.AutoSize = true;
-            this.lbValue.Location = new System.Drawing.Point(691, 121);
-            this.lbValue.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.lbValue.Location = new System.Drawing.Point(346, 63);
             this.lbValue.Name = "lbValue";
-            this.lbValue.Size = new System.Drawing.Size(67, 25);
+            this.lbValue.Size = new System.Drawing.Size(34, 13);
             this.lbValue.TabIndex = 11;
             this.lbValue.Text = "Value";
             // 
             // tbInformation
             // 
-            this.tbInformation.Location = new System.Drawing.Point(697, 66);
-            this.tbInformation.Margin = new System.Windows.Forms.Padding(6);
+            this.tbInformation.Enabled = false;
+            this.tbInformation.Location = new System.Drawing.Point(348, 34);
             this.tbInformation.Name = "tbInformation";
-            this.tbInformation.Size = new System.Drawing.Size(392, 31);
+            this.tbInformation.Size = new System.Drawing.Size(198, 20);
             this.tbInformation.TabIndex = 10;
             // 
             // lbInformation
             // 
             this.lbInformation.AutoSize = true;
-            this.lbInformation.Location = new System.Drawing.Point(691, 35);
-            this.lbInformation.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.lbInformation.Location = new System.Drawing.Point(346, 18);
             this.lbInformation.Name = "lbInformation";
-            this.lbInformation.Size = new System.Drawing.Size(118, 25);
+            this.lbInformation.Size = new System.Drawing.Size(59, 13);
             this.lbInformation.TabIndex = 9;
             this.lbInformation.Text = "Information";
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(903, 205);
+            this.btnCancel.Enabled = false;
+            this.btnCancel.Location = new System.Drawing.Point(452, 107);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(2);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(186, 44);
+            this.btnCancel.Size = new System.Drawing.Size(93, 23);
             this.btnCancel.TabIndex = 18;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
             // ClipboardUserControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnApply);
@@ -150,9 +148,8 @@ namespace ClipboardTurbo.View {
             this.Controls.Add(this.lbValue);
             this.Controls.Add(this.tbInformation);
             this.Controls.Add(this.lbInformation);
-            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "ClipboardUserControl";
-            this.Size = new System.Drawing.Size(1143, 962);
+            this.Size = new System.Drawing.Size(572, 500);
             this.ResumeLayout(false);
             this.PerformLayout();
 
