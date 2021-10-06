@@ -8,6 +8,7 @@ namespace ClipboardTurbo {
     public enum UIState {
         New,
         Edit,
+        EditSafeReady,
         Delete,
         Selected,
         None

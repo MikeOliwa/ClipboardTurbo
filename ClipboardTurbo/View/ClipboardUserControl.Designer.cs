@@ -102,6 +102,7 @@ namespace ClipboardTurbo.View {
             this.tbValue.Name = "tbValue";
             this.tbValue.Size = new System.Drawing.Size(392, 31);
             this.tbValue.TabIndex = 12;
+            this.tbValue.TextChanged += new System.EventHandler(this.tbValue_TextChanged);
             // 
             // lbValue
             // 
@@ -120,6 +121,7 @@ namespace ClipboardTurbo.View {
             this.tbInformation.Name = "tbInformation";
             this.tbInformation.Size = new System.Drawing.Size(392, 31);
             this.tbInformation.TabIndex = 10;
+            this.tbInformation.TextChanged += new System.EventHandler(this.tbInformation_TextChanged);
             // 
             // lbInformation
             // 

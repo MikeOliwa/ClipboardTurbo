@@ -34,6 +34,8 @@ namespace ClipboardTurbo.View {
                 lbNotification.Text = $"\"{value}\" was sent to your clipboard!";
             } else if (lvInformation.SelectedItems.Count > 1) {
                 tbInformation.Text = String.Empty;
+                tbValue.Text = String.Empty;
+                updateUI(ref _ui, UIState.None);
             }
 
         }
@@ -56,7 +58,7 @@ namespace ClipboardTurbo.View {
                     lvInformation.Enabled = false;
                     tbInformation.Enabled = true;
                     tbValue.Enabled = true;
-                    btnApply.Enabled = true;
+                    btnApply.Enabled = false;
                     btnCancel.Enabled = true;
                     btnNew.Enabled = false;
                     btnEdit.Enabled = false;
@@ -64,6 +66,17 @@ namespace ClipboardTurbo.View {
                     return true;
 
                 case UIState.Edit:
+                    lvInformation.Enabled = false;
+                    tbInformation.Enabled = true;
+                    tbValue.Enabled = true;
+                    btnApply.Enabled = false;
+                    btnCancel.Enabled = true;
+                    btnNew.Enabled = false;
+                    btnEdit.Enabled = false;
+                    btnDelete.Enabled = false;
+                    return true;
+
+                case UIState.EditSafeReady:
                     lvInformation.Enabled = false;
                     tbInformation.Enabled = true;
                     tbValue.Enabled = true;
@@ -75,16 +88,6 @@ namespace ClipboardTurbo.View {
                     return true;
 
                 case UIState.Delete:
-                    //lvInformation.Enabled = false;
-                    //tbInformation.Enabled = false;
-                    //tbValue.Enabled = false;
-                    //btnApply.Enabled = false;
-                    //btnCancel.Enabled = false;
-                    //btnNew.Enabled = false;
-                    //btnEdit.Enabled = false;
-                    //btnDelete.Enabled = false;
-                    //return true;
-
                     lvInformation.Enabled = true;
                     tbInformation.Enabled = false;
                     tbValue.Enabled = false;
@@ -120,12 +123,16 @@ namespace ClipboardTurbo.View {
         }
 
         private void btnDelete_Click(object sender, EventArgs e) {
-            _clipboardController.DeleteInformation(lvInformation.FocusedItem.Index);
-            _clipboardController.RefreshListView(lvInformation);
-            tbInformation.Text = String.Empty;
-            tbValue.Text = String.Empty;
-            lbNotification.Text = String.Empty;
+            DialogResult result = MessageBox.Show($"Delete information \"{lvInformation.FocusedItem.Text}\"?","Delete information", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
             updateUI(ref _ui, UIState.Delete);
+            if(result == DialogResult.Yes) {
+                _clipboardController.DeleteInformation(lvInformation.FocusedItem.Index);
+                _clipboardController.RefreshListView(lvInformation);
+                tbInformation.Text = String.Empty;
+                tbValue.Text = String.Empty;
+                lbNotification.Text = String.Empty;
+                updateUI(ref _ui, UIState.None);
+            }
         }
 
         private void btnApply_Click(object sender, EventArgs e) {
@@ -161,6 +168,30 @@ namespace ClipboardTurbo.View {
             tbValue.Text = String.Empty;
             lbNotification.Text = String.Empty;
             updateUI(ref _ui, UIState.None);
+        }
+
+        private void tbInformation_TextChanged(object sender, EventArgs e) {
+            if (((TextBox)sender).Modified) {
+                if (!tbInformation.Text.Equals(String.Empty) && !tbValue.Text.Equals(String.Empty)) {
+                    btnApply.Enabled = true;
+                }
+                else {
+                    btnApply.Enabled = false;
+                }
+            }
+
+        }
+
+        private void tbValue_TextChanged(object sender, EventArgs e) {
+            if (((TextBox)sender).Modified) {
+                if (!tbInformation.Text.Equals(String.Empty) && !tbValue.Text.Equals(String.Empty)) {
+                    btnApply.Enabled = true;
+                }
+                else {
+                    btnApply.Enabled = false;
+                }
+            }
+
         }
     }
 }

@@ -84,6 +84,7 @@ namespace ClipboardTurbo.Controller {
         public bool AddInformation(int id, string name, string value) {
             InformationList = ReadInformation();
             Information information = new Information {Id = id, Name = name, Value = value };
+
             if (!CheckInformationExists(information)) {
                 InformationList.Add(information);
                 WriteInformation(InformationList);
