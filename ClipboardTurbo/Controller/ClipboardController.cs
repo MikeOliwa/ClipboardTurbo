@@ -47,23 +47,12 @@ namespace ClipboardTurbo.Controller {
             listView.Items.Clear();
             if(InformationList != null) {
                 foreach (Information information in InformationList) {
-                listView.Items.Add(information.Name);
+                    listView.Items.Add(information.Name);
                 }
             }
         }
 
         public int GetNextId() {
-            //InformationList = ReadInformation();
-            //int highestId = 0;
-
-            //foreach(Information information in InformationList) {
-            //    if(highestId < information.Id) {
-            //        highestId = information.Id;
-            //    }
-            //}
-
-            //return highestId + 1;
-
             if(InformationList.Count == 0) {
                 return 0;
             } else {
