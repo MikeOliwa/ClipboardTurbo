@@ -56,23 +56,6 @@ namespace ClipboardTurbo.View {
             
         }
 
-
-
-        private void lvInformation_SelectedIndexChanged(object sender, EventArgs e) {
-            if (lvInformation.SelectedItems.Count == 1) {
-                tbInformation.Text = lvInformation.FocusedItem.Text;
-                UpdateUI(ref _uiState, UIState.Selected);
-                string value = _clipboardController.GetValueOfInformation(lvInformation.FocusedItem.Index);
-                tbValue.Text = value;
-                lbNotification.Text = $"\"{value}\" was sent to your clipboard!";
-            } else if (lvInformation.SelectedItems.Count > 1) {
-                tbInformation.Text = String.Empty;
-                tbValue.Text = String.Empty;
-                WindowUIState = UIState.None;
-            }
-
-        }
-
         private bool UpdateUI(ref UIState ui, UIState state) {
             ui = state;
             switch(ui){
@@ -147,6 +130,23 @@ namespace ClipboardTurbo.View {
             }
         }
 
+        private void lvInformation_SelectedIndexChanged(object sender, EventArgs e) {
+            if (lvInformation.SelectedItems.Count == 1) {
+                tbInformation.Text = lvInformation.FocusedItem.Text;
+                UpdateUI(ref _uiState, UIState.Selected);
+                string value = _clipboardController.GetValueOfInformation(lvInformation.FocusedItem.Index);
+                tbValue.Text = value;
+                lbNotification.Text = $"\"{value}\" was sent to your clipboard!";
+            } else if (lvInformation.SelectedItems.Count > 1) {
+                tbInformation.Text = String.Empty;
+                tbValue.Text = String.Empty;
+                WindowUIState = UIState.None;
+            }
+
+        }
+
+
+
         private void btnNew_Click(object sender, EventArgs e) {
             WindowUIState = UIState.New;
         }
@@ -169,7 +169,7 @@ namespace ClipboardTurbo.View {
         }
 
         private void btnApply_Click(object sender, EventArgs e) {
-            switch (_uiState) {
+            switch (WindowUIState) {
                 case UIState.New:
                     if (_clipboardController.AddInformation(_clipboardController.GetNextId(),tbInformation.Text.Trim(), tbValue.Text.Trim())) {
                         tbInformation.Text = String.Empty;

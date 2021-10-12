@@ -24,10 +24,13 @@ namespace ClipboardTurbo {
         /// Der Inhalt der Methode darf nicht mit dem Code-Editor geändert werden.
         /// </summary>
         private void InitializeComponent() {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Clipboard));
             this.tcClipboard = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.clipboardUserControl1 = new ClipboardTurbo.View.ClipboardUserControl();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.trayIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.tcClipboard.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.SuspendLayout();
@@ -47,28 +50,35 @@ namespace ClipboardTurbo {
             this.tabPage1.Controls.Add(this.clipboardUserControl1);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(566, 500);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // clipboardUserControl1
+            // 
+            this.clipboardUserControl1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.clipboardUserControl1.Location = new System.Drawing.Point(-2, 0);
+            this.clipboardUserControl1.Name = "clipboardUserControl1";
+            this.clipboardUserControl1.Size = new System.Drawing.Size(572, 500);
+            this.clipboardUserControl1.TabIndex = 0;
+            this.clipboardUserControl1.WindowUIState = ClipboardTurbo.UIState.None;
+            // 
             // tabPage2
             // 
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(566, 500);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // clipboardUserControl1
+            // trayIcon
             // 
-            this.clipboardUserControl1.Location = new System.Drawing.Point(-2, 0);
-            this.clipboardUserControl1.Name = "clipboardUserControl1";
-            this.clipboardUserControl1.Size = new System.Drawing.Size(572, 500);
-            this.clipboardUserControl1.TabIndex = 0;
+            this.trayIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("trayIcon.Icon")));
+            this.trayIcon.Text = "Clipboard Turbo";
             // 
             // Clipboard
             // 
@@ -78,6 +88,8 @@ namespace ClipboardTurbo {
             this.Controls.Add(this.tcClipboard);
             this.Name = "Clipboard";
             this.Text = "Clipboard Turbo";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Clipboard_FormClosing);
+            this.Resize += new System.EventHandler(this.Clipboard_Resize);
             this.tcClipboard.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -90,6 +102,7 @@ namespace ClipboardTurbo {
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private View.ClipboardUserControl clipboardUserControl1;
+        private System.Windows.Forms.NotifyIcon trayIcon;
     }
 }
 
