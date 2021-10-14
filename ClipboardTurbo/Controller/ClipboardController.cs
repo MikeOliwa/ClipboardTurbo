@@ -14,34 +14,26 @@ namespace ClipboardTurbo.Controller {
 
         List<Information> InformationList = new List<Information> { };
 
-        private string appdataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-        private string datafilePath;
-        private string datafileName = "ClipboardTurbo_Data.xml";
+        private string dataFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "ClipboardTurbo");
+        private string dataFileName = "ClipboardTurbo_Data.xml";
 
-        private static XmlSerializer serializer = new XmlSerializer(typeof(List<Information>));
-        private static XmlSerializer deserializer = new XmlSerializer(typeof(List<Information>));
+        private static XmlManager xmlManager;
 
         public ClipboardController() {
 
-            datafilePath = Path.Combine(appdataPath, "ClipboardTurbo");
+            xmlManager = new XmlManager(Path.Combine(dataFilePath, dataFileName));
 
-            PrepareConfigFolder(datafilePath);
+            xmlManager.PrepareXmlFolder(dataFilePath);
 
-            if (File.Exists(Path.Combine(datafilePath, datafileName))){
-                InformationList = ReadInformation();
-                WriteInformation(InformationList);
+            if (File.Exists(Path.Combine(dataFilePath, dataFileName))){
+                InformationList = xmlManager.ReadInformation<Information>();
+                xmlManager.WriteInformation(InformationList);
             } else {
-                WriteInformation(InformationList);
+                xmlManager.WriteInformation(InformationList);
             }
 
         }
 
-        // Prüft, ob Ordner für Konfigurationsdatei existiert, falls nicht wird er im Appdata Verzeichnis angelegt.
-        private void PrepareConfigFolder(string configfilePath) {
-            if (!Directory.Exists(configfilePath)) {
-                Directory.CreateDirectory(configfilePath);
-            }
-        }
 
         public void RefreshListView(ListView listView) {
             listView.Items.Clear();
@@ -62,21 +54,20 @@ namespace ClipboardTurbo.Controller {
 
         public void SetIds() {
             int id = 0;
-            ReadInformation();
             foreach(Information information in InformationList) {
                 information.Id = id;
                 id++;
             }
-            WriteInformation(InformationList);
+            xmlManager.WriteInformation(InformationList);
         }
 
         public bool AddInformation(int id, string name, string value) {
-            InformationList = ReadInformation();
+            InformationList = xmlManager.ReadInformation<Information>();
             Information information = new Information {Id = id, Name = name, Value = value };
 
             if (!CheckInformationExists(information)) {
                 InformationList.Add(information);
-                WriteInformation(InformationList);
+                xmlManager.WriteInformation(InformationList);
                 return true;
             } else {
                 MessageBox.Show($"Information ({name}) already exists.","Duplicate information",MessageBoxButtons.OK,MessageBoxIcon.Information);
@@ -85,12 +76,12 @@ namespace ClipboardTurbo.Controller {
         }
 
         public bool EditInformation(int id,string name, string value) {
-            InformationList = ReadInformation();
-            foreach(Information information in InformationList){
+            InformationList = xmlManager.ReadInformation<Information>();
+            foreach (Information information in InformationList){
                 if (information.Id == id) {
                     information.Name = name;
                     information.Value = value;
-                    WriteInformation(InformationList);
+                    xmlManager.WriteInformation(InformationList);
                     return true;
                 }
             }
@@ -98,28 +89,16 @@ namespace ClipboardTurbo.Controller {
         }
 
         public bool DeleteInformation(int id) {
-            InformationList = ReadInformation();
+            InformationList = xmlManager.ReadInformation<Information>();
             foreach (Information information in InformationList) {
                 if (information.Id == id) {
                     InformationList.RemoveAt(id);
                     SetIds();
-                    WriteInformation(InformationList);
+                    xmlManager.WriteInformation(InformationList);
                     return true;
                 }
             }
             return false;
-        }
-
-        public void WriteInformation(List<Information> information) {
-            using (TextWriter writer = new StreamWriter(Path.Combine(datafilePath, datafileName))) {
-                serializer.Serialize(writer, information);
-            }
-        }
-
-        public List<Information> ReadInformation() {
-            using (StreamReader stream = new StreamReader(Path.Combine(datafilePath, datafileName))) {
-                return (List<Information>)deserializer.Deserialize(stream);
-            }
         }
 
         private bool CheckInformationExists(Information informationToInsert) {

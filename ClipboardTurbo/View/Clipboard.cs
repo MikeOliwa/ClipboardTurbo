@@ -41,8 +41,8 @@ namespace ClipboardTurbo {
 
             //
             //Modifier key codes: Alt = 1, Ctrl = 2, Shift = 4, Win = 8
-            RegisterHotKey(this.Handle, _hotkeyID, 4, (int)Keys.D1);
-            RegisterHotKey(this.Handle, _hotkeyID, 4, (int)Keys.B);
+            RegisterHotKey(this.Handle, _hotkeyID, 1, (int)Keys.D1);
+            RegisterHotKey(this.Handle, _hotkeyID, 1, (int)Keys.C);
             //
         }
 
@@ -81,6 +81,18 @@ namespace ClipboardTurbo {
                 WindowState = FormWindowState.Normal;
             }
             base.WndProc(ref m);
+        }
+
+        public View.ClipboardUserControl ClipboardUserControl {
+            get => default;
+            set {
+            }
+        }
+
+        public View.SettingsUserControl SettingsUserControl {
+            get => default;
+            set {
+            }
         }
         //
 

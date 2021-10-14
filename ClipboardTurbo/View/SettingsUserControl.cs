@@ -14,10 +14,12 @@ namespace ClipboardTurbo.View {
         private Controller.SettingsController _settingsController;
         public SettingsUserControl() {
             InitializeComponent();
+
+            _settingsController = new Controller.SettingsController();
         }
 
-        private void SettingsUserControl_Load(object sender, EventArgs e) {
-        }
+        private void cbStartWithWindows_CheckedChanged(object sender, EventArgs e) {
 
+        }
     }
 }

@@ -5,11 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ClipboardTurbo {
-    public class Config {
+    public class Configuration {
 
-        public string setting { get; set; }
+        public string Setting { get; set; }
 
-        public string value { get; set; }
+        public string Value { get; set; }
 
     }
 }

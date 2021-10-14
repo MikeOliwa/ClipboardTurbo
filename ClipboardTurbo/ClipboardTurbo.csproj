@@ -48,9 +48,10 @@
   <ItemGroup>
     <Compile Include="Controller\ClipboardController.cs" />
     <Compile Include="Controller\SettingsController.cs" />
-    <Compile Include="Model\Config.cs" />
+    <Compile Include="Interface\IXmlManager.cs" />
+    <Compile Include="Model\Configuration.cs" />
     <Compile Include="Model\Information.cs" />
-    <Compile Include="UIState.cs" />
+    <Compile Include="Enum\UIState.cs" />
     <Compile Include="View\Clipboard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -71,6 +72,7 @@
     <Compile Include="View\SettingsUserControl.Designer.cs">
       <DependentUpon>SettingsUserControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="XmlManager.cs" />
     <EmbeddedResource Include="View\Clipboard.resx">
       <DependentUpon>Clipboard.cs</DependentUpon>
     </EmbeddedResource>
@@ -89,6 +91,7 @@
     <EmbeddedResource Include="View\SettingsUserControl.resx">
       <DependentUpon>SettingsUserControl.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="UML\ClassDiagram.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
