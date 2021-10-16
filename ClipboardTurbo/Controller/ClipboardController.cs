@@ -10,30 +10,27 @@ using ClipboardTurbo.View;
 using ClipboardTurbo.Controller;
 
 namespace ClipboardTurbo.Controller {
-    public class ClipboardController {
+    public class ClipboardController : BaseController {
 
         List<Information> InformationList = new List<Information> { };
 
-        private string dataFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "ClipboardTurbo");
-        private string dataFileName = "ClipboardTurbo_Data.xml";
-
-        private static XmlManager xmlManager;
-
-        public ClipboardController() {
-
-            xmlManager = new XmlManager(Path.Combine(dataFilePath, dataFileName));
-
-            xmlManager.PrepareXmlFolder(dataFilePath);
-
-            if (File.Exists(Path.Combine(dataFilePath, dataFileName))){
-                InformationList = xmlManager.ReadInformation<Information>();
-                xmlManager.WriteInformation(InformationList);
-            } else {
-                xmlManager.WriteInformation(InformationList);
-            }
-
+        private ClipboardController()
+            : base("ClipboardTurbo_Data.xml", Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "ClipboardTurbo")) {
         }
 
+        public static ClipboardController Create() {
+            var controller = new ClipboardController();
+
+            if (File.Exists(Path.Combine(controller._dataFilePath, controller._dataFileName))) {
+                controller.InformationList = controller._xmlManager.ReadInformation<Information>();
+                controller._xmlManager.WriteInformation(controller.InformationList);
+            }
+            else {
+                controller._xmlManager.WriteInformation(controller.InformationList);
+            }
+
+            return controller;
+        }
 
         public void RefreshListView(ListView listView) {
             listView.Items.Clear();
@@ -58,16 +55,16 @@ namespace ClipboardTurbo.Controller {
                 information.Id = id;
                 id++;
             }
-            xmlManager.WriteInformation(InformationList);
+            _xmlManager.WriteInformation(InformationList);
         }
 
         public bool AddInformation(int id, string name, string value) {
-            InformationList = xmlManager.ReadInformation<Information>();
+            InformationList = _xmlManager.ReadInformation<Information>();
             Information information = new Information {Id = id, Name = name, Value = value };
 
             if (!CheckInformationExists(information)) {
                 InformationList.Add(information);
-                xmlManager.WriteInformation(InformationList);
+                _xmlManager.WriteInformation(InformationList);
                 return true;
             } else {
                 MessageBox.Show($"Information ({name}) already exists.","Duplicate information",MessageBoxButtons.OK,MessageBoxIcon.Information);
@@ -76,12 +73,12 @@ namespace ClipboardTurbo.Controller {
         }
 
         public bool EditInformation(int id,string name, string value) {
-            InformationList = xmlManager.ReadInformation<Information>();
+            InformationList = _xmlManager.ReadInformation<Information>();
             foreach (Information information in InformationList){
                 if (information.Id == id) {
                     information.Name = name;
                     information.Value = value;
-                    xmlManager.WriteInformation(InformationList);
+                    _xmlManager.WriteInformation(InformationList);
                     return true;
                 }
             }
@@ -89,12 +86,12 @@ namespace ClipboardTurbo.Controller {
         }
 
         public bool DeleteInformation(int id) {
-            InformationList = xmlManager.ReadInformation<Information>();
+            InformationList = _xmlManager.ReadInformation<Information>();
             foreach (Information information in InformationList) {
                 if (information.Id == id) {
                     InformationList.RemoveAt(id);
                     SetIds();
-                    xmlManager.WriteInformation(InformationList);
+                    _xmlManager.WriteInformation(InformationList);
                     return true;
                 }
             }

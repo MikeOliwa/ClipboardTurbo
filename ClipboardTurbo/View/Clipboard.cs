@@ -30,7 +30,7 @@ namespace ClipboardTurbo {
             tcClipboard.TabPages[0].Text = "Clipboard";
             tcClipboard.TabPages[1].Text = "Settings";
             tcClipboard.Refresh();
-
+            
             trayIcon.Visible = true;
 
             ContextMenu contextMenu = new ContextMenu();

@@ -12,6 +12,7 @@ namespace ClipboardTurbo.View {
     public partial class SettingsUserControl : UserControl {
 
         private Controller.SettingsController _settingsController;
+
         public SettingsUserControl() {
             InitializeComponent();
 
@@ -19,7 +20,19 @@ namespace ClipboardTurbo.View {
         }
 
         private void cbStartWithWindows_CheckedChanged(object sender, EventArgs e) {
+            
+        }
 
+        private void tbConfigPath_TextChanged(object sender, EventArgs e) {
+
+        }
+
+        private void cbKeepOnTop_CheckedChanged(object sender, EventArgs e) {
+            Control form = Parent;
+            while (!(form is Form))
+                form = Parent;
+
+            (form as Form).TopMost = cbStartWithWindows.Checked;
         }
     }
 }

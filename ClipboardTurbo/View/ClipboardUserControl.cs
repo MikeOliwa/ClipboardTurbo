@@ -45,7 +45,7 @@ namespace ClipboardTurbo.View {
         public ClipboardUserControl() {
             InitializeComponent();
 
-            _clipboardController = new Controller.ClipboardController();
+            _clipboardController = Controller.ClipboardController.Create();
             _clipboardController.RefreshListView(lvInformation);
             lvInformation.View = System.Windows.Forms.View.List;
 

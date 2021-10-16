@@ -10,24 +10,31 @@ using System.Xml.Serialization;
 namespace ClipboardTurbo.Controller {
     public class SettingsController {
 
-        List<Information> InformationList = new List<Information> { };
+        List<Configuration> SettingsList = new List<Configuration> { };
 
         private string dataFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "ClipboardTurbo");
         private string dataFileName = "ClipboardTurbo_Config.xml";
 
-        private static XmlManager serializer_forConfiguration;
+        private static XmlManager xmlManager;
 
 
 
         public SettingsController()
         {
-            serializer_forConfiguration = new XmlManager(Path.Combine(dataFilePath, dataFileName));
+            xmlManager = new XmlManager(Path.Combine(dataFilePath, dataFileName));
 
+            xmlManager.PrepareXmlFolder(dataFilePath);
 
-        }
-
-
-        
+            if (File.Exists(Path.Combine(dataFilePath, dataFileName))) {
+                SettingsList = xmlManager.ReadInformation<Configuration>();
+                xmlManager.WriteInformation(SettingsList);
+            }
+            else {
+                xmlManager.WriteInformation(SettingsList);
+            }
+            
+        }       
 
     }
+
 }

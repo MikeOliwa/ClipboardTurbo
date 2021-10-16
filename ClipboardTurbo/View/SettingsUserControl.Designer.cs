@@ -50,6 +50,7 @@ namespace ClipboardTurbo.View {
             this.tbConfigPath.Name = "tbConfigPath";
             this.tbConfigPath.Size = new System.Drawing.Size(405, 20);
             this.tbConfigPath.TabIndex = 1;
+            this.tbConfigPath.TextChanged += new System.EventHandler(this.tbConfigPath_TextChanged);
             // 
             // btnConfigPath
             // 
@@ -95,6 +96,7 @@ namespace ClipboardTurbo.View {
             this.cbKeepOnTop.TabIndex = 6;
             this.cbKeepOnTop.Text = "Keep window on top";
             this.cbKeepOnTop.UseVisualStyleBackColor = true;
+            this.cbKeepOnTop.CheckedChanged += new System.EventHandler(this.cbKeepOnTop_CheckedChanged);
             // 
             // cbStartWithWindows
             // 

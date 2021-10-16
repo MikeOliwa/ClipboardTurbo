@@ -7,7 +7,7 @@ using System.Xml.Serialization;
 using System.IO;
 
 namespace ClipboardTurbo {
-    class XmlManager : IXmlManager {
+    public class XmlManager : IXmlManager {
         public string XmlPath { get; set; }
 
         public XmlManager(string path) => this.XmlPath = path;
