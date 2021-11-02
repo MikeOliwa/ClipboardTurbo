@@ -14,12 +14,20 @@ namespace ClipboardTurbo.Controller {
 
         List<Information> InformationList = new List<Information> { };
 
-        private ClipboardController()
-            : base("ClipboardTurbo_Data.xml", Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "ClipboardTurbo")) {
+        private ClipboardController(string currentPath)
+            : base(currentPath, "ClipboardTurbo_Data.xml") {
         }
 
         public static ClipboardController Create() {
-            var controller = new ClipboardController();
+
+            if (!File.Exists(@"C:\Users\mikea\AppData\Roaming\ClipboardTurbo\ClipboardTurbo_Path.txt")) {
+                using (StreamWriter sw = File.CreateText(@"C:\Users\mikea\AppData\Roaming\ClipboardTurbo\ClipboardTurbo_Path.txt")) {
+                    sw.Write(@"C:\Users\mikea\AppData\Roaming\ClipboardTurbo");
+                }
+            }
+
+            string currentPath = System.IO.File.ReadAllText(@"C:\Users\mikea\AppData\Roaming\ClipboardTurbo\ClipboardTurbo_Path.txt");
+            var controller = new ClipboardController(currentPath);
 
             if (File.Exists(Path.Combine(controller._dataFilePath, controller._dataFileName))) {
                 controller.InformationList = controller._xmlManager.ReadInformation<Information>();
@@ -31,6 +39,7 @@ namespace ClipboardTurbo.Controller {
 
             return controller;
         }
+
 
         public void RefreshListView(ListView listView) {
             listView.Items.Clear();

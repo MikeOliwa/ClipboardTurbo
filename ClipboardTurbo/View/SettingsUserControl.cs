@@ -16,23 +16,33 @@ namespace ClipboardTurbo.View {
         public SettingsUserControl() {
             InitializeComponent();
 
-            _settingsController = new Controller.SettingsController();
-        }
-
-        private void cbStartWithWindows_CheckedChanged(object sender, EventArgs e) {
-            
+            _settingsController = Controller.SettingsController.Create();
         }
 
         private void tbConfigPath_TextChanged(object sender, EventArgs e) {
-
+            _settingsController.ChangeFilePath(tbConfigPath.Text);
         }
+
 
         private void cbKeepOnTop_CheckedChanged(object sender, EventArgs e) {
             Control form = Parent;
             while (!(form is Form))
                 form = Parent;
 
-            (form as Form).TopMost = cbStartWithWindows.Checked;
+            (form as Form).TopMost = cbKeepOnTop.Checked;
         }
+
+        private void btnConfigPath_Click(object sender, EventArgs e) {
+            var fileContent = string.Empty;
+            var filePath = string.Empty;
+
+            FolderBrowserDialog dialog = new FolderBrowserDialog();
+            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
+                string folder = dialog.SelectedPath;
+                tbConfigPath.Text = folder;
+            }
+        }
+
+
     }
 }

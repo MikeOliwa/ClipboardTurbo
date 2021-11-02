@@ -8,32 +8,46 @@ using System.Xml.Linq;
 using System.Xml.Serialization;
 
 namespace ClipboardTurbo.Controller {
-    public class SettingsController {
+    public class SettingsController : BaseController{
 
         List<Configuration> SettingsList = new List<Configuration> { };
 
-        private string dataFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "ClipboardTurbo");
-        private string dataFileName = "ClipboardTurbo_Config.xml";
 
-        private static XmlManager xmlManager;
+        private SettingsController(string currentPath)
+            : base(currentPath, "ClipboardTurbo_Config.xml") {
+        }     
+        
+        public static SettingsController Create() {
+            string currentPath = System.IO.File.ReadAllText(@"C:\Users\\mikea\AppData\Roaming\ClipboardTurbo\ClipboardTurbo_Path.txt");
+            var controller = new SettingsController(currentPath);
 
-
-
-        public SettingsController()
-        {
-            xmlManager = new XmlManager(Path.Combine(dataFilePath, dataFileName));
-
-            xmlManager.PrepareXmlFolder(dataFilePath);
-
-            if (File.Exists(Path.Combine(dataFilePath, dataFileName))) {
-                SettingsList = xmlManager.ReadInformation<Configuration>();
-                xmlManager.WriteInformation(SettingsList);
+            if (File.Exists(Path.Combine(controller._dataFilePath, controller._dataFileName))) {
+                controller.SettingsList = controller._xmlManager.ReadInformation<Configuration>();
+                controller._xmlManager.WriteInformation(controller.SettingsList);
             }
             else {
-                xmlManager.WriteInformation(SettingsList);
+                controller._xmlManager.WriteInformation(controller.SettingsList);
             }
-            
-        }       
+
+            return controller;
+        }
+
+        public void ChangeFilePath(string newPath) {
+
+            string currentPath = System.IO.File.ReadAllText(@"C:\Users\\mikea\AppData\Roaming\ClipboardTurbo\ClipboardTurbo_Path.txt");
+
+            List<string> files = Directory.GetFiles(currentPath).ToList();
+            foreach(string file in files) {
+                if(file != @"C:\Users\\mikea\AppData\Roaming\ClipboardTurbo\ClipboardTurbo_Path.txt") {
+                    File.Copy(currentPath + '\\' + file.Substring(file.LastIndexOf('\\')), newPath+'\\' + file.Substring(file.LastIndexOf('\\')));
+                    File.Delete(currentPath + '\\' + file.Substring(file.LastIndexOf('\\')));
+                }
+            }
+
+            using (StreamWriter sw = File.CreateText(this._pathInfoLocation)) {
+                sw.Write(newPath);
+            }
+        }
 
     }
 
