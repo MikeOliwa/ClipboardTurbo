@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace ClipboardTurbo.Controller {
     public class BaseController {
 
-        protected string _pathInfoLocation = @"C:\Users\\mikea\AppData\Roaming\ClipboardTurbo\ClipboardTurbo_Path.txt";
+        protected string _pathInfoLocation = @"C:\Users\\mikea\AppData\Roaming\ClipboardTurbo\filepath.txt";
         protected string _dataFilePath;
         protected string _dataFileName;
         protected XmlManager _xmlManager;
