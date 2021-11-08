@@ -20,13 +20,14 @@ namespace ClipboardTurbo.Controller {
 
         public static ClipboardController Create() {
 
-            if (!File.Exists(@"C:\Users\mikea\AppData\Roaming\ClipboardTurbo\ClipboardTurbo_Path.txt")) {
-                using (StreamWriter sw = File.CreateText(@"C:\Users\mikea\AppData\Roaming\ClipboardTurbo\ClipboardTurbo_Path.txt")) {
+            if (!File.Exists(@"C:\Users\mikea\AppData\Roaming\ClipboardTurbo\filepath.txt")) {
+                Directory.CreateDirectory(@"C:\Users\mikea\AppData\Roaming\ClipboardTurbo");
+                using (StreamWriter sw = File.CreateText(@"C:\Users\mikea\AppData\Roaming\ClipboardTurbo\filepath.txt")) {
                     sw.Write(@"C:\Users\mikea\AppData\Roaming\ClipboardTurbo");
                 }
             }
 
-            string currentPath = System.IO.File.ReadAllText(@"C:\Users\mikea\AppData\Roaming\ClipboardTurbo\ClipboardTurbo_Path.txt");
+            string currentPath = System.IO.File.ReadAllText(@"C:\Users\mikea\AppData\Roaming\ClipboardTurbo\filepath.txt");
             var controller = new ClipboardController(currentPath);
 
             if (File.Exists(Path.Combine(controller._dataFilePath, controller._dataFileName))) {

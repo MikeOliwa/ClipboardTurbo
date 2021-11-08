@@ -18,7 +18,7 @@ namespace ClipboardTurbo.Controller {
         }     
         
         public static SettingsController Create() {
-            string currentPath = System.IO.File.ReadAllText(@"C:\Users\\mikea\AppData\Roaming\ClipboardTurbo\ClipboardTurbo_Path.txt");
+            string currentPath = System.IO.File.ReadAllText(@"C:\Users\\mikea\AppData\Roaming\ClipboardTurbo\filepath.txt");
             var controller = new SettingsController(currentPath);
 
             if (File.Exists(Path.Combine(controller._dataFilePath, controller._dataFileName))) {
@@ -34,11 +34,11 @@ namespace ClipboardTurbo.Controller {
 
         public void ChangeFilePath(string newPath) {
 
-            string currentPath = System.IO.File.ReadAllText(@"C:\Users\\mikea\AppData\Roaming\ClipboardTurbo\ClipboardTurbo_Path.txt");
+            string currentPath = System.IO.File.ReadAllText(@"C:\Users\\mikea\AppData\Roaming\ClipboardTurbo\filepath.txt");
 
             List<string> files = Directory.GetFiles(currentPath).ToList();
             foreach(string file in files) {
-                if(file != @"C:\Users\\mikea\AppData\Roaming\ClipboardTurbo\ClipboardTurbo_Path.txt") {
+                if(file != "C:\\Users\\mikea\\AppData\\Roaming\\ClipboardTurbo\\filepath.txt") {
                     File.Copy(currentPath + '\\' + file.Substring(file.LastIndexOf('\\')), newPath+'\\' + file.Substring(file.LastIndexOf('\\')));
                     File.Delete(currentPath + '\\' + file.Substring(file.LastIndexOf('\\')));
                 }

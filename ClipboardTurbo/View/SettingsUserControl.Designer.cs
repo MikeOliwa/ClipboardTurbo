@@ -105,7 +105,6 @@ namespace ClipboardTurbo.View {
             this.cbKeepOnTop.TabIndex = 6;
             this.cbKeepOnTop.Text = "Keep window on top";
             this.cbKeepOnTop.UseVisualStyleBackColor = true;
-            this.cbKeepOnTop.CheckedChanged += new System.EventHandler(this.cbKeepOnTop_CheckedChanged);
             // 
             // cbStartWithWindows
             // 

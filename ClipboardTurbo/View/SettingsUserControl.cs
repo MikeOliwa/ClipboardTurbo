@@ -23,15 +23,6 @@ namespace ClipboardTurbo.View {
             _settingsController.ChangeFilePath(tbConfigPath.Text);
         }
 
-
-        private void cbKeepOnTop_CheckedChanged(object sender, EventArgs e) {
-            Control form = Parent;
-            while (!(form is Form))
-                form = Parent;
-
-            (form as Form).TopMost = cbKeepOnTop.Checked;
-        }
-
         private void btnConfigPath_Click(object sender, EventArgs e) {
             var fileContent = string.Empty;
             var filePath = string.Empty;
