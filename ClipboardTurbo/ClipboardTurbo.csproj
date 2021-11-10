@@ -49,6 +49,7 @@
     <Compile Include="Controller\BaseController.cs" />
     <Compile Include="Controller\ClipboardController.cs" />
     <Compile Include="Controller\SettingsController.cs" />
+    <Compile Include="Enum\Setting.cs" />
     <Compile Include="Interface\IXmlManager.cs" />
     <Compile Include="Model\Configuration.cs" />
     <Compile Include="Model\Information.cs" />

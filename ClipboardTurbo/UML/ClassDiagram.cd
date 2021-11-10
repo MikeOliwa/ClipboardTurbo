@@ -38,7 +38,7 @@
   <Class Name="ClipboardTurbo.View.SettingsUserControl">
     <Position X="12.5" Y="2.75" Width="3" />
     <TypeIdentifier>
-      <HashCode>ACAQICAAgCAAAAABAICAAAACAAAAABAACAEAQAAACAA=</HashCode>
+      <HashCode>ACAQMCAAgCAAAAABAICAAAACAAAAgAUACQEAQAACCAA=</HashCode>
       <FileName>View\SettingsUserControl.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -47,16 +47,8 @@
   </Class>
   <Class Name="ClipboardTurbo.Controller.SettingsController">
     <Position X="12.5" Y="7.75" Width="3" />
-    <InheritanceLine Type="ClipboardTurbo.Controller.BaseController" ManuallyRouted="true">
-      <Path>
-        <Point X="10.625" Y="11" />
-        <Point X="10.625" Y="10.527" />
-        <Point X="14" Y="10.527" />
-        <Point X="14" Y="9.819" />
-      </Path>
-    </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAgAAAAAAAEAAAAAAAEAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEIgBAAAAAAEAAAAACAEAAAAA=</HashCode>
       <FileName>Controller\SettingsController.cs</FileName>
     </TypeIdentifier>
   </Class>

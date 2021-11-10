@@ -11,7 +11,7 @@ namespace ClipboardTurbo.Controller {
         protected string _pathInfoLocation = @"C:\Users\\mikea\AppData\Roaming\ClipboardTurbo\filepath.txt";
         protected string _dataFilePath;
         protected string _dataFileName;
-        protected XmlManager _xmlManager;
+        public XmlManager _xmlManager;
 
         public BaseController(string filePath, string fileName) {
             _xmlManager = new XmlManager(Path.Combine(filePath, fileName));
