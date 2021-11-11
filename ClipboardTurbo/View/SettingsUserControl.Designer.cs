@@ -75,9 +75,12 @@ namespace ClipboardTurbo.View {
             // 
             this.rtbKeyboardShortcut.Location = new System.Drawing.Point(115, 80);
             this.rtbKeyboardShortcut.Name = "rtbKeyboardShortcut";
+            this.rtbKeyboardShortcut.ReadOnly = true;
             this.rtbKeyboardShortcut.Size = new System.Drawing.Size(115, 22);
             this.rtbKeyboardShortcut.TabIndex = 4;
             this.rtbKeyboardShortcut.Text = "";
+            this.rtbKeyboardShortcut.TextChanged += new System.EventHandler(this.rtbKeyboardShortcut_TextChanged);
+            this.rtbKeyboardShortcut.KeyDown += new System.Windows.Forms.KeyEventHandler(this.rtbKeyboardShortcut_KeyDown);
             // 
             // btnKeyboardShortcutReset
             // 
@@ -118,6 +121,7 @@ namespace ClipboardTurbo.View {
             this.btnEmptyList.TabIndex = 8;
             this.btnEmptyList.Text = "Empty whole list";
             this.btnEmptyList.UseVisualStyleBackColor = true;
+            this.btnEmptyList.Click += new System.EventHandler(this.btnEmptyList_Click);
             // 
             // SettingsUserControl
             // 

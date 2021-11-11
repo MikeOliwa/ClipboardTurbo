@@ -39,11 +39,36 @@ namespace ClipboardTurbo {
             trayIcon.ContextMenu.MenuItems.Add(new MenuItem("Open", TrayIconMenu_OnClickOpen));
             trayIcon.ContextMenu.MenuItems.Add(new MenuItem("Close", TrayIconMenu_OnClickClose));
 
-            //
+
+            ClipboardTurbo.View.SettingsUserControl.RtbKeyboardShortcutChangedEvent += OnRtbKeyboardShortcutChangedEvent;
+
+        }
+
+        private void OnRtbKeyboardShortcutChangedEvent(object sender, RtbKeyboardShortcutChangedEventArgs e) {
+
+            if (!e.SettingValue.Equals(String.Empty)) {
+                UnregisterHotKey(this.Handle, _hotkeyID);
+            }
+
             //Modifier key codes: Alt = 1, Ctrl = 2, Shift = 4, Win = 8
-            RegisterHotKey(this.Handle, _hotkeyID, 1, (int)Keys.D1);
-            RegisterHotKey(this.Handle, _hotkeyID, 1, (int)Keys.C);
-            //
+            int modifierKey = 0;
+
+            switch (e.Modifier) {
+                case Keys.Alt:
+                    modifierKey = 1;
+                    break;
+                case Keys.Control:
+                    modifierKey = 2;
+                    break;
+                case Keys.Shift:
+                    modifierKey = 4;
+                    break;
+                case Keys.LWin:
+                    modifierKey = 8;
+                    break;
+            }
+            //RegisterHotKey(this.Handle, _hotkeyID, modifierKey, (int)(Keys)e.Key);
+            RegisterHotKey(this.Handle, _hotkeyID, modifierKey, (int)e.SettingValue.ElementAt<char>(e.SettingValue.Length-1));
         }
 
         private void Clipboard_FormClosing(object sender, FormClosingEventArgs e) {

@@ -100,6 +100,13 @@ namespace ClipboardTurbo.Controller {
             return value;
         }
 
+        public string GetHotKeySettingValue() {
+            SettingsList = _xmlManager.ReadInformation<Configuration>();
+            string value = SettingsList.First<Configuration>(item => item.Setting == Setting.KeyboardShortcut).Value;
+
+            return value;
+        }
+
         private void ApplyStartWithWindows() {
             SettingsList = _xmlManager.ReadInformation<Configuration>();
         }

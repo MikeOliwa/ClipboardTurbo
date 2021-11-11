@@ -51,6 +51,7 @@ namespace ClipboardTurbo.View {
 
             //4. Die "OnUIStateChangedEvent" Methode wird als Abonnent dem "UIStateChangedEvent" Event hinzugefügt.
             this.UIStateChangedEvent += OnUIStateChangedEvent;
+            SettingsUserControl.BtnEmptyWholeListClickedEvent += OnBtnEmptyWholeListClickedEvent;
 
             WindowUIState = UIState.None;
             
@@ -225,6 +226,11 @@ namespace ClipboardTurbo.View {
                 }
             }
 
+        }
+
+        private void OnBtnEmptyWholeListClickedEvent(object sender, EventArgs e) {
+            _clipboardController.CleanInformation();
+            _clipboardController.RefreshListView(lvInformation);
         }
 
     }

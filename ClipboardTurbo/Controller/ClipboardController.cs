@@ -108,6 +108,11 @@ namespace ClipboardTurbo.Controller {
             return false;
         }
 
+        public void CleanInformation() {
+            InformationList.Clear();
+            _xmlManager.WriteInformation(InformationList);
+        }
+
         private bool CheckInformationExists(Information informationToInsert) {
             foreach (Information information in InformationList) {
                 if(information.Name == informationToInsert.Name) {

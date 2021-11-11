@@ -11,5 +11,7 @@ namespace ClipboardTurbo {
 
         public string Value { get; set; }
 
+        public int ID { get; set; }
+
     }
 }
