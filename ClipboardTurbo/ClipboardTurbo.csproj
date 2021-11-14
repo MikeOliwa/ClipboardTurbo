@@ -55,7 +55,7 @@
     <Compile Include="Model\Configuration.cs" />
     <Compile Include="Model\Information.cs" />
     <Compile Include="Enum\UIState.cs" />
-    <Compile Include="RtbKeyboardShortcutChangedEventArgs.cs" />
+    <Compile Include="KeyboardShortcutChangedEventArgs.cs" />
     <Compile Include="View\Clipboard.cs">
       <SubType>Form</SubType>
     </Compile>

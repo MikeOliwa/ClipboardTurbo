@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ClipboardTurbo {
-   public class RtbKeyboardShortcutChangedEventArgs {
+   public class KeyboardShortcutChangedEventArgs {
 
-        public RtbKeyboardShortcutChangedEventArgs(Keys modifier, char key, string settingValue){
+        public KeyboardShortcutChangedEventArgs(Keys modifier, char key, string settingValue){
             Modifier = modifier;
             Key = key;
             SettingValue = settingValue;

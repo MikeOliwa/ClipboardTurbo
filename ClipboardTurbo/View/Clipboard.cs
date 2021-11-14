@@ -40,11 +40,12 @@ namespace ClipboardTurbo {
             trayIcon.ContextMenu.MenuItems.Add(new MenuItem("Close", TrayIconMenu_OnClickClose));
 
 
-            ClipboardTurbo.View.SettingsUserControl.RtbKeyboardShortcutChangedEvent += OnRtbKeyboardShortcutChangedEvent;
+            ClipboardTurbo.View.SettingsUserControl.KeyboardShortcutChangedEvent += OnKeyboardShortcutChangedEvent;
 
         }
 
-        private void OnRtbKeyboardShortcutChangedEvent(object sender, RtbKeyboardShortcutChangedEventArgs e) {
+        //Registrieren von Tastenkombinationen
+        private void OnKeyboardShortcutChangedEvent(object sender, KeyboardShortcutChangedEventArgs e) {
 
             if (!e.SettingValue.Equals(String.Empty)) {
                 UnregisterHotKey(this.Handle, _hotkeyID);

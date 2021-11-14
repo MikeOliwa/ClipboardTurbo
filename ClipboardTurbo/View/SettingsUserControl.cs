@@ -14,18 +14,29 @@ using Microsoft.Win32;
 namespace ClipboardTurbo.View {
     public partial class SettingsUserControl : UserControl {
 
+        //Controller
         private Controller.SettingsController _settingsController;
-        public static event EventHandler BtnEmptyWholeListClickedEvent;
-        public static event EventHandler<RtbKeyboardShortcutChangedEventArgs> RtbKeyboardShortcutChangedEvent;
+
+        //Events
+        public static event EventHandler EmptyWholeListClickedEvent;
+        public static event EventHandler<KeyboardShortcutChangedEventArgs> KeyboardShortcutChangedEvent;
+
+        //Event Raiser
+        private void RaiseEmptyWholeListClickedEvent() {
+            EmptyWholeListClickedEvent?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void RaiseKeyboardShortcutChangedEvent(KeyboardShortcutChangedEventArgs e) {
+            KeyboardShortcutChangedEvent?.Invoke(this, e);
+        }
+
+        //Parent-Form des UserControls
         Form _mainForm;
 
         public SettingsUserControl() {
             InitializeComponent();
 
             _settingsController = Controller.SettingsController.Create();
-
-
-
             tbConfigPath.Text = _settingsController.GetFilesDirectory();
 
         }
@@ -35,6 +46,7 @@ namespace ClipboardTurbo.View {
             ApplySettingsToProgram();
         }
 
+        //Liest die Config-XML aus und übernimmt die ausgelesenen Eintellungen in das geladene Programm.
         private void ApplySettingsToProgram() {
 
             foreach (Configuration config in _settingsController.SettingsList) {
@@ -42,6 +54,8 @@ namespace ClipboardTurbo.View {
                 switch (config.Setting) {
 
                     case Setting.KeyboardShortcut:
+
+                        if (_settingsController.GetHotKeySettingValue().Equals(String.Empty)) break;
                         rtbKeyboardShortcut.Text = _settingsController.GetHotKeySettingValue();
                         string modifierOfSetting_STRING = _settingsController.GetHotKeySettingValue().Remove(_settingsController.GetHotKeySettingValue().IndexOf(" "));
                         Keys modifierOfSetting_KEYS = Keys.None;
@@ -62,11 +76,9 @@ namespace ClipboardTurbo.View {
                         }
 
                         if (modifierOfSetting_KEYS != Keys.None) {
-                            RtbKeyboardShortcutChangedEventArgs eventArgs = new RtbKeyboardShortcutChangedEventArgs(modifierOfSetting_KEYS, _settingsController.GetHotKeySettingValue().ElementAt<char>(_settingsController.GetHotKeySettingValue().Length - 1), _settingsController.GetHotKeySettingValue());
-                            RaiseRtbKeyboardShortcutChangedEvent(eventArgs);
+                            KeyboardShortcutChangedEventArgs eventArgs = new KeyboardShortcutChangedEventArgs(modifierOfSetting_KEYS, _settingsController.GetHotKeySettingValue().ElementAt<char>(_settingsController.GetHotKeySettingValue().Length - 1), _settingsController.GetHotKeySettingValue());
+                            RaiseKeyboardShortcutChangedEvent(eventArgs);
                         }
-
-
                         break;
 
                     case Setting.KeepWindowOnTop:
@@ -104,39 +116,6 @@ namespace ClipboardTurbo.View {
         }
 
 
-        //private void rtbKeyboardShortcut_KeyPress(object sender, KeyPressEventArgs e) {
-
-        //    Keys modifier = Control.ModifierKeys;
-
-        //    if (modifier == Keys.None) {
-        //        string pressedKey = e.KeyChar.ToString().ToUpper();
-        //        rtbKeyboardShortcut.Text = pressedKey;
-        //    }
-        //    else {
-
-        //        switch (Control.ModifierKeys) {
-
-        //            case Keys.Alt:
-        //                rtbKeyboardShortcut.Text = "ALT + " + e.KeyChar.ToString().ToUpper();
-        //                break;
-        //            case Keys.Shift:
-        //                rtbKeyboardShortcut.Text = "SHIFT + " + e.KeyChar.ToString().ToUpper();
-        //                break;
-        //            case Keys.LWin:
-        //                rtbKeyboardShortcut.Text = "WIN + " + e.KeyChar.ToString().ToUpper();
-        //                break;
-        //            case Keys.Control:
-        //                rtbKeyboardShortcut.Text = "CTRL + " + e.KeyChar.ToString().ToUpper();
-        //                break;
-        //        }
-
-        //        RtbKeyboardShortcutChangedEventArgs eventArgs = new RtbKeyboardShortcutChangedEventArgs(modifier, e.KeyChar, _settingsController.GetHotKeySettingValue());
-
-        //        RaiseRtbKeyboardShortcutChangedEvent(eventArgs);
-        //    }
-
-        //}
-
         private void rtbKeyboardShortcut_KeyDown(object sender, KeyEventArgs e) {
 
             if (e.KeyCode != Control.ModifierKeys) {
@@ -157,9 +136,8 @@ namespace ClipboardTurbo.View {
                         break;
                 }
 
-                RtbKeyboardShortcutChangedEventArgs eventArgs = new RtbKeyboardShortcutChangedEventArgs(Control.ModifierKeys, (char)e.KeyCode, _settingsController.GetHotKeySettingValue());
-
-                RaiseRtbKeyboardShortcutChangedEvent(eventArgs);
+                KeyboardShortcutChangedEventArgs eventArgs = new KeyboardShortcutChangedEventArgs(Control.ModifierKeys, (char)e.KeyCode, _settingsController.GetHotKeySettingValue());
+                RaiseKeyboardShortcutChangedEvent(eventArgs);
 
             }
 
@@ -215,16 +193,8 @@ namespace ClipboardTurbo.View {
             result = System.Windows.MessageBox.Show(messageBoxText, caption, button, icon, MessageBoxResult.Yes);
 
             if (result == MessageBoxResult.Yes) {
-                RaiseBtnEmptyWholeListClickedEvent();
+                RaiseEmptyWholeListClickedEvent();
             }
-        }
-
-        private void RaiseBtnEmptyWholeListClickedEvent() {
-            BtnEmptyWholeListClickedEvent?.Invoke(this, EventArgs.Empty);
-        }
-
-        private void RaiseRtbKeyboardShortcutChangedEvent(RtbKeyboardShortcutChangedEventArgs e) {
-            RtbKeyboardShortcutChangedEvent?.Invoke(this, e);
         }
 
     }
