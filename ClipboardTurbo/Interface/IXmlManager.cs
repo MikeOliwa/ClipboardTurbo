@@ -9,8 +9,11 @@ using System.Xml.Serialization;
 namespace ClipboardTurbo {
     interface IXmlManager {
 
+        //Properties
         string XmlPath { get; set; }
 
+
+        //Methods / Functions
         void WriteInformation<TXmlType>(List<TXmlType> list);
         List<TXmlType> ReadInformation<TXmlType>();
 

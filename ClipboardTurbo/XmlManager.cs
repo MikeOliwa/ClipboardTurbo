@@ -8,11 +8,14 @@ using System.IO;
 
 namespace ClipboardTurbo {
     public class XmlManager : IXmlManager {
+
+        //Properies
         public string XmlPath { get; set; }
 
+        //Constructor
         public XmlManager(string path) => this.XmlPath = path;
 
-
+        //Methods / Functions
         public void PrepareXmlFolder(string directory) {
             if (!Directory.Exists(directory)) {
                 Directory.CreateDirectory(directory);

@@ -10,13 +10,15 @@ using System.Xml.Serialization;
 namespace ClipboardTurbo.Controller {
     public class SettingsController : BaseController {
 
+        //Fields
         public List<Configuration> SettingsList = new List<Configuration> { };
 
-
+        //Constructor
         private SettingsController(string currentPath)
             : base(currentPath, "ClipboardTurbo_Config.xml") {
         }
 
+        //Factory Method
         public static SettingsController Create() {
             string currentPath = System.IO.File.ReadAllText(@"C:\Users\\mikea\AppData\Roaming\ClipboardTurbo\filepath.txt");
             var controller = new SettingsController(currentPath);
@@ -37,6 +39,7 @@ namespace ClipboardTurbo.Controller {
             return controller;
         }
 
+        //Methods / Functions
         public void SetFilesDirectory(string newPath) {
 
             string currentPath = System.IO.File.ReadAllText(@"C:\Users\\mikea\AppData\Roaming\ClipboardTurbo\filepath.txt");
@@ -63,7 +66,6 @@ namespace ClipboardTurbo.Controller {
         public void UpdateSettingValue(Setting settingName, string settingValue) {
 
             SettingsList = _xmlManager.ReadInformation<Configuration>();
-            Configuration configuration;
 
             foreach(Configuration config in SettingsList) {
 
@@ -89,26 +91,11 @@ namespace ClipboardTurbo.Controller {
 
         }
 
-
-        private void ApplyKeyboardShortcut() {
-            SettingsList = _xmlManager.ReadInformation<Configuration>();
-        }
-
-        public string KeepWindowOnTop() {
-            SettingsList = _xmlManager.ReadInformation<Configuration>();
-            string value = SettingsList.First<Configuration>(item => item.Setting == Setting.KeepWindowOnTop).Value;
-            return value;
-        }
-
         public string GetHotKeySettingValue() {
             SettingsList = _xmlManager.ReadInformation<Configuration>();
             string value = SettingsList.First<Configuration>(item => item.Setting == Setting.KeyboardShortcut).Value;
 
             return value;
-        }
-
-        private void ApplyStartWithWindows() {
-            SettingsList = _xmlManager.ReadInformation<Configuration>();
         }
 
     }

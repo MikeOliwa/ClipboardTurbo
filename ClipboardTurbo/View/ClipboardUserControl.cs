@@ -12,9 +12,15 @@ using ClipboardTurbo.Controller;
 namespace ClipboardTurbo.View {
     public partial class ClipboardUserControl : UserControl {
 
+        //Controller
         private Controller.ClipboardController _clipboardController;
+        //Event manager
+        private ClipboardTurbo.Events.EventManager _eventManager;
+
+        //other members
         private UIState _uiState;
 
+        //Properties
         public UIState WindowUIState {
             get {
                 return _uiState;
@@ -22,41 +28,40 @@ namespace ClipboardTurbo.View {
             set {
                 if (_uiState != value) {
                     _uiState = value;
-                    //5. Auslösen des Events
-                    RaiseUIStateChangedEvent(_uiState);
+                    _eventManager.RaiseUIStateChangedEvent(_uiState);
                 }
             }
         }
 
-        //1. Event.
-        public event EventHandler<UIState> UIStateChangedEvent;
 
-        //2. Methode zum Auslösen des Events. Event wird nur
-        //   ausgelöst wenn Subscriber existieren.
-        public virtual void RaiseUIStateChangedEvent(UIState state) {
-            UIStateChangedEvent?.Invoke(this, state);
-        }
-
-        //3. Methode, welche auf das ausgelöste Event reagieren soll.
         private void OnUIStateChangedEvent(object sender, UIState uiMode) {
             UpdateUI(ref _uiState,uiMode);
         }
 
+        //Construktor
         public ClipboardUserControl() {
             InitializeComponent();
+
+            _eventManager = ClipboardTurbo.Events.EventManager.Instance;
 
             _clipboardController = Controller.ClipboardController.Create();
             _clipboardController.RefreshListView(lvInformation);
             lvInformation.View = System.Windows.Forms.View.List;
 
-            //4. Die "OnUIStateChangedEvent" Methode wird als Abonnent dem "UIStateChangedEvent" Event hinzugefügt.
-            this.UIStateChangedEvent += OnUIStateChangedEvent;
-            SettingsUserControl.EmptyWholeListClickedEvent += OnEmptyWholeListClickedEvent;
+            _eventManager.UIStateChangedEvent += OnUIStateChangedEvent;
+            _eventManager.EmptyWholeListClickedEvent += OnEmptyWholeListClickedEvent;
 
             WindowUIState = UIState.None;
             
         }
 
+        //Event-Handler
+        private void OnEmptyWholeListClickedEvent(object sender, EventArgs e) {
+            _clipboardController.CleanInformation();
+            _clipboardController.RefreshListView(lvInformation);
+        }
+
+        // Methods / Functions
         private bool UpdateUI(ref UIState ui, UIState state) {
             ui = state;
             switch(ui){
@@ -131,6 +136,8 @@ namespace ClipboardTurbo.View {
             }
         }
 
+        //Control-Actions
+
         private void lvInformation_SelectedIndexChanged(object sender, EventArgs e) {
             if (lvInformation.SelectedItems.Count == 1) {
                 tbInformation.Text = lvInformation.FocusedItem.Text;
@@ -145,8 +152,6 @@ namespace ClipboardTurbo.View {
             }
 
         }
-
-
 
         private void btnNew_Click(object sender, EventArgs e) {
             WindowUIState = UIState.New;
@@ -228,11 +233,19 @@ namespace ClipboardTurbo.View {
 
         }
 
-        private void OnEmptyWholeListClickedEvent(object sender, EventArgs e) {
-            _clipboardController.CleanInformation();
-            _clipboardController.RefreshListView(lvInformation);
-        }
 
+        private void kryptonButton1_Click(object sender, EventArgs e) {
+            DialogResult result = MessageBox.Show($"Delete information \"{lvInformation.FocusedItem.Text}\"?", "Delete information", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+            WindowUIState = UIState.Delete;
+            if (result == DialogResult.Yes) {
+                _clipboardController.DeleteInformation(lvInformation.FocusedItem.Index);
+                _clipboardController.RefreshListView(lvInformation);
+                tbInformation.Text = String.Empty;
+                tbValue.Text = String.Empty;
+                lbNotification.Text = String.Empty;
+                WindowUIState = UIState.None;
+            }
+        }
     }
 
 }

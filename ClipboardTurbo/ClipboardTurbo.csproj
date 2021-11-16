@@ -33,9 +33,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ComponentFactory.Krypton.Toolkit">
+      <HintPath>..\..\..\..\Desktop\Krypton-master\Bin\ComponentFactory.Krypton.Toolkit.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -51,11 +55,12 @@
     <Compile Include="Controller\ClipboardController.cs" />
     <Compile Include="Controller\SettingsController.cs" />
     <Compile Include="Enum\Setting.cs" />
+    <Compile Include="Events\EventManager.cs" />
     <Compile Include="Interface\IXmlManager.cs" />
     <Compile Include="Model\Configuration.cs" />
     <Compile Include="Model\Information.cs" />
     <Compile Include="Enum\UIState.cs" />
-    <Compile Include="KeyboardShortcutChangedEventArgs.cs" />
+    <Compile Include="EventArgs\KeyboardShortcutChangedEventArgs.cs" />
     <Compile Include="View\Clipboard.cs">
       <SubType>Form</SubType>
     </Compile>

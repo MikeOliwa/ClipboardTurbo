@@ -28,7 +28,7 @@
   <Class Name="ClipboardTurbo.View.ClipboardUserControl">
     <Position X="5.5" Y="2.75" Width="3.25" />
     <TypeIdentifier>
-      <HashCode>AAIQgBAFACAAAAEQAAGBCEAGEAAMQIgAAUAAAACAEVQ=</HashCode>
+      <HashCode>AAIQgBAFACAAAAESAAGBCEAGEAAMQIgAAUAAAACAEVQ=</HashCode>
       <FileName>View\ClipboardUserControl.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>

@@ -35,14 +35,14 @@ namespace ClipboardTurbo.View {
             this.lbInformation = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.lbNotification = new System.Windows.Forms.Label();
+            this.kryptonButton1 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.SuspendLayout();
             // 
             // btnApply
             // 
-            this.btnApply.Location = new System.Drawing.Point(696, 206);
-            this.btnApply.Margin = new System.Windows.Forms.Padding(6);
+            this.btnApply.Location = new System.Drawing.Point(348, 107);
             this.btnApply.Name = "btnApply";
-            this.btnApply.Size = new System.Drawing.Size(186, 44);
+            this.btnApply.Size = new System.Drawing.Size(93, 23);
             this.btnApply.TabIndex = 17;
             this.btnApply.Text = "Apply";
             this.btnApply.UseVisualStyleBackColor = true;
@@ -53,21 +53,19 @@ namespace ClipboardTurbo.View {
             this.lvInformation.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lvInformation.HideSelection = false;
             this.lvInformation.LabelWrap = false;
-            this.lvInformation.Location = new System.Drawing.Point(32, 35);
-            this.lvInformation.Margin = new System.Windows.Forms.Padding(6);
+            this.lvInformation.Location = new System.Drawing.Point(16, 18);
             this.lvInformation.Name = "lvInformation";
             this.lvInformation.Scrollable = false;
-            this.lvInformation.Size = new System.Drawing.Size(632, 826);
+            this.lvInformation.Size = new System.Drawing.Size(318, 431);
             this.lvInformation.TabIndex = 16;
             this.lvInformation.UseCompatibleStateImageBehavior = false;
             this.lvInformation.SelectedIndexChanged += new System.EventHandler(this.lvInformation_SelectedIndexChanged);
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(696, 488);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(6);
+            this.btnDelete.Location = new System.Drawing.Point(348, 254);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(396, 65);
+            this.btnDelete.Size = new System.Drawing.Size(198, 34);
             this.btnDelete.TabIndex = 15;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -75,10 +73,9 @@ namespace ClipboardTurbo.View {
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(696, 412);
-            this.btnEdit.Margin = new System.Windows.Forms.Padding(6);
+            this.btnEdit.Location = new System.Drawing.Point(348, 214);
             this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(396, 65);
+            this.btnEdit.Size = new System.Drawing.Size(198, 34);
             this.btnEdit.TabIndex = 14;
             this.btnEdit.Text = "Edit";
             this.btnEdit.UseVisualStyleBackColor = true;
@@ -86,10 +83,9 @@ namespace ClipboardTurbo.View {
             // 
             // btnNew
             // 
-            this.btnNew.Location = new System.Drawing.Point(696, 335);
-            this.btnNew.Margin = new System.Windows.Forms.Padding(6);
+            this.btnNew.Location = new System.Drawing.Point(348, 174);
             this.btnNew.Name = "btnNew";
-            this.btnNew.Size = new System.Drawing.Size(396, 65);
+            this.btnNew.Size = new System.Drawing.Size(198, 34);
             this.btnNew.TabIndex = 13;
             this.btnNew.Text = "New";
             this.btnNew.UseVisualStyleBackColor = true;
@@ -97,48 +93,44 @@ namespace ClipboardTurbo.View {
             // 
             // tbValue
             // 
-            this.tbValue.Location = new System.Drawing.Point(696, 152);
-            this.tbValue.Margin = new System.Windows.Forms.Padding(6);
+            this.tbValue.Location = new System.Drawing.Point(348, 79);
             this.tbValue.Name = "tbValue";
-            this.tbValue.Size = new System.Drawing.Size(392, 31);
+            this.tbValue.Size = new System.Drawing.Size(198, 20);
             this.tbValue.TabIndex = 12;
             this.tbValue.TextChanged += new System.EventHandler(this.tbValue_TextChanged);
             // 
             // lbValue
             // 
             this.lbValue.AutoSize = true;
-            this.lbValue.Location = new System.Drawing.Point(692, 121);
-            this.lbValue.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.lbValue.Location = new System.Drawing.Point(346, 63);
             this.lbValue.Name = "lbValue";
-            this.lbValue.Size = new System.Drawing.Size(67, 25);
+            this.lbValue.Size = new System.Drawing.Size(34, 13);
             this.lbValue.TabIndex = 11;
             this.lbValue.Text = "Value";
             // 
             // tbInformation
             // 
-            this.tbInformation.Location = new System.Drawing.Point(696, 65);
-            this.tbInformation.Margin = new System.Windows.Forms.Padding(6);
+            this.tbInformation.Location = new System.Drawing.Point(348, 34);
             this.tbInformation.Name = "tbInformation";
-            this.tbInformation.Size = new System.Drawing.Size(392, 31);
+            this.tbInformation.Size = new System.Drawing.Size(198, 20);
             this.tbInformation.TabIndex = 10;
             this.tbInformation.TextChanged += new System.EventHandler(this.tbInformation_TextChanged);
             // 
             // lbInformation
             // 
             this.lbInformation.AutoSize = true;
-            this.lbInformation.Location = new System.Drawing.Point(692, 35);
-            this.lbInformation.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.lbInformation.Location = new System.Drawing.Point(346, 18);
             this.lbInformation.Name = "lbInformation";
-            this.lbInformation.Size = new System.Drawing.Size(118, 25);
+            this.lbInformation.Size = new System.Drawing.Size(59, 13);
             this.lbInformation.TabIndex = 9;
             this.lbInformation.Text = "Information";
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(904, 206);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCancel.Location = new System.Drawing.Point(452, 107);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(186, 44);
+            this.btnCancel.Size = new System.Drawing.Size(93, 23);
             this.btnCancel.TabIndex = 18;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -147,16 +139,41 @@ namespace ClipboardTurbo.View {
             // lbNotification
             // 
             this.lbNotification.AutoSize = true;
-            this.lbNotification.Location = new System.Drawing.Point(27, 896);
+            this.lbNotification.Location = new System.Drawing.Point(14, 466);
+            this.lbNotification.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbNotification.Name = "lbNotification";
-            this.lbNotification.Size = new System.Drawing.Size(0, 25);
+            this.lbNotification.Size = new System.Drawing.Size(0, 13);
             this.lbNotification.TabIndex = 19;
+            // 
+            // kryptonButton1
+            // 
+            this.kryptonButton1.Location = new System.Drawing.Point(349, 294);
+            this.kryptonButton1.Name = "kryptonButton1";
+            this.kryptonButton1.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.ProfessionalSystem;
+            this.kryptonButton1.Size = new System.Drawing.Size(196, 37);
+            this.kryptonButton1.StateCommon.Back.Color1 = System.Drawing.Color.DodgerBlue;
+            this.kryptonButton1.StateCommon.Back.Color2 = System.Drawing.Color.CornflowerBlue;
+            this.kryptonButton1.StateCommon.Back.ColorAngle = 45F;
+            this.kryptonButton1.StateCommon.Border.Color1 = System.Drawing.Color.DodgerBlue;
+            this.kryptonButton1.StateCommon.Border.Color2 = System.Drawing.Color.CornflowerBlue;
+            this.kryptonButton1.StateCommon.Border.ColorAngle = 45F;
+            this.kryptonButton1.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.kryptonButton1.StateCommon.Border.Rounding = 7;
+            this.kryptonButton1.StateCommon.Content.ShortText.Color1 = System.Drawing.Color.White;
+            this.kryptonButton1.StateCommon.Content.ShortText.Color2 = System.Drawing.Color.White;
+            this.kryptonButton1.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.kryptonButton1.TabIndex = 20;
+            this.kryptonButton1.Values.Text = "Delete";
+            this.kryptonButton1.Click += new System.EventHandler(this.kryptonButton1_Click);
             // 
             // ClipboardUserControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.Controls.Add(this.kryptonButton1);
             this.Controls.Add(this.lbNotification);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnApply);
@@ -168,9 +185,8 @@ namespace ClipboardTurbo.View {
             this.Controls.Add(this.lbValue);
             this.Controls.Add(this.tbInformation);
             this.Controls.Add(this.lbInformation);
-            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "ClipboardUserControl";
-            this.Size = new System.Drawing.Size(1144, 962);
+            this.Size = new System.Drawing.Size(572, 500);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -189,5 +205,6 @@ namespace ClipboardTurbo.View {
         private System.Windows.Forms.Label lbInformation;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Label lbNotification;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton1;
     }
 }

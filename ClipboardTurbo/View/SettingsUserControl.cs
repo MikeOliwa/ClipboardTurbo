@@ -16,25 +16,17 @@ namespace ClipboardTurbo.View {
 
         //Controller
         private Controller.SettingsController _settingsController;
+        //Event Manager
+        private Events.EventManager _eventManager;
 
-        //Events
-        public static event EventHandler EmptyWholeListClickedEvent;
-        public static event EventHandler<KeyboardShortcutChangedEventArgs> KeyboardShortcutChangedEvent;
-
-        //Event Raiser
-        private void RaiseEmptyWholeListClickedEvent() {
-            EmptyWholeListClickedEvent?.Invoke(this, EventArgs.Empty);
-        }
-
-        private void RaiseKeyboardShortcutChangedEvent(KeyboardShortcutChangedEventArgs e) {
-            KeyboardShortcutChangedEvent?.Invoke(this, e);
-        }
-
-        //Parent-Form des UserControls
+        //other members
         Form _mainForm;
 
+        //Konstruktor
         public SettingsUserControl() {
             InitializeComponent();
+
+            _eventManager = ClipboardTurbo.Events.EventManager.Instance;
 
             _settingsController = Controller.SettingsController.Create();
             tbConfigPath.Text = _settingsController.GetFilesDirectory();
@@ -45,6 +37,8 @@ namespace ClipboardTurbo.View {
             _mainForm = this.FindForm();
             ApplySettingsToProgram();
         }
+
+        //Methods / Functions
 
         //Liest die Config-XML aus und übernimmt die ausgelesenen Eintellungen in das geladene Programm.
         private void ApplySettingsToProgram() {
@@ -77,7 +71,7 @@ namespace ClipboardTurbo.View {
 
                         if (modifierOfSetting_KEYS != Keys.None) {
                             KeyboardShortcutChangedEventArgs eventArgs = new KeyboardShortcutChangedEventArgs(modifierOfSetting_KEYS, _settingsController.GetHotKeySettingValue().ElementAt<char>(_settingsController.GetHotKeySettingValue().Length - 1), _settingsController.GetHotKeySettingValue());
-                            RaiseKeyboardShortcutChangedEvent(eventArgs);
+                            _eventManager.RaiseKeyboardShortcutChangedEvent(eventArgs);
                         }
                         break;
 
@@ -103,6 +97,8 @@ namespace ClipboardTurbo.View {
             }
         }
 
+
+        //Control-Actions
         private void btnConfigPath_Click(object sender, EventArgs e) {
             var fileContent = string.Empty;
             var filePath = string.Empty;
@@ -137,7 +133,7 @@ namespace ClipboardTurbo.View {
                 }
 
                 KeyboardShortcutChangedEventArgs eventArgs = new KeyboardShortcutChangedEventArgs(Control.ModifierKeys, (char)e.KeyCode, _settingsController.GetHotKeySettingValue());
-                RaiseKeyboardShortcutChangedEvent(eventArgs);
+                _eventManager.RaiseKeyboardShortcutChangedEvent(eventArgs);
 
             }
 
@@ -193,7 +189,7 @@ namespace ClipboardTurbo.View {
             result = System.Windows.MessageBox.Show(messageBoxText, caption, button, icon, MessageBoxResult.Yes);
 
             if (result == MessageBoxResult.Yes) {
-                RaiseEmptyWholeListClickedEvent();
+                _eventManager.RaiseEmptyWholeListClickedEvent();
             }
         }
 

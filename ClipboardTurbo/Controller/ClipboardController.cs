@@ -12,12 +12,15 @@ using ClipboardTurbo.Controller;
 namespace ClipboardTurbo.Controller {
     public class ClipboardController : BaseController {
 
+        //Fields
         List<Information> InformationList = new List<Information> { };
 
+        //Construktor
         private ClipboardController(string currentPath)
             : base(currentPath, "ClipboardTurbo_Data.xml") {
         }
 
+        //Factory Method
         public static ClipboardController Create() {
 
             if (!File.Exists(@"C:\Users\mikea\AppData\Roaming\ClipboardTurbo\filepath.txt")) {
@@ -41,7 +44,7 @@ namespace ClipboardTurbo.Controller {
             return controller;
         }
 
-
+        //Methods / Functions
         public void RefreshListView(ListView listView) {
             listView.Items.Clear();
             if(InformationList != null) {

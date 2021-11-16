@@ -13,20 +13,26 @@ using System.Runtime.InteropServices;
 namespace ClipboardTurbo {
     public partial class Clipboard : Form {
 
-        private bool _closedByTrayMenu;
+        //Eventmanager
+        private Events.EventManager _eventManager;
 
+        //other members
+        private bool _closedByTrayMenu;
         const int _hotkeyID = 99;
 
         [DllImport("user32.dll")]
         public static extern bool RegisterHotKey(IntPtr hWnd, int id, int fsModifiers, int key);
         [DllImport("user32.dll")]
         public static extern bool UnregisterHotKey(IntPtr hwnd, int id);
-        //
 
+
+        //Constructor
         public Clipboard() {
             InitializeComponent();
+
+            _eventManager = ClipboardTurbo.Events.EventManager.Instance;
+
             _closedByTrayMenu = false;
-            //this.TopMost = true;
             tcClipboard.TabPages[0].Text = "Clipboard";
             tcClipboard.TabPages[1].Text = "Settings";
             tcClipboard.Refresh();
@@ -39,10 +45,12 @@ namespace ClipboardTurbo {
             trayIcon.ContextMenu.MenuItems.Add(new MenuItem("Open", TrayIconMenu_OnClickOpen));
             trayIcon.ContextMenu.MenuItems.Add(new MenuItem("Close", TrayIconMenu_OnClickClose));
 
+            _eventManager.KeyboardShortcutChangedEvent += OnKeyboardShortcutChangedEvent;
 
-            ClipboardTurbo.View.SettingsUserControl.KeyboardShortcutChangedEvent += OnKeyboardShortcutChangedEvent;
 
         }
+
+        //Event-Handler
 
         //Registrieren von Tastenkombinationen
         private void OnKeyboardShortcutChangedEvent(object sender, KeyboardShortcutChangedEventArgs e) {
@@ -68,9 +76,10 @@ namespace ClipboardTurbo {
                     modifierKey = 8;
                     break;
             }
-            //RegisterHotKey(this.Handle, _hotkeyID, modifierKey, (int)(Keys)e.Key);
             RegisterHotKey(this.Handle, _hotkeyID, modifierKey, (int)e.SettingValue.ElementAt<char>(e.SettingValue.Length-1));
         }
+
+        //Control-Actions
 
         private void Clipboard_FormClosing(object sender, FormClosingEventArgs e) {
             if(e.CloseReason == CloseReason.UserClosing && _closedByTrayMenu == false) {
@@ -109,17 +118,6 @@ namespace ClipboardTurbo {
             base.WndProc(ref m);
         }
 
-        public View.ClipboardUserControl ClipboardUserControl {
-            get => default;
-            set {
-            }
-        }
-
-        public View.SettingsUserControl SettingsUserControl {
-            get => default;
-            set {
-            }
-        }
         //
 
     }
