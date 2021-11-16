@@ -9,9 +9,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ClipboardTurbo.Controller;
 using System.Runtime.InteropServices;
+using ComponentFactory.Krypton.Toolkit;
 
 namespace ClipboardTurbo {
-    public partial class Clipboard : Form {
+    public partial class Clipboard : KryptonForm {
 
         //Eventmanager
         private Events.EventManager _eventManager;
@@ -33,9 +34,9 @@ namespace ClipboardTurbo {
             _eventManager = ClipboardTurbo.Events.EventManager.Instance;
 
             _closedByTrayMenu = false;
-            tcClipboard.TabPages[0].Text = "Clipboard";
-            tcClipboard.TabPages[1].Text = "Settings";
-            tcClipboard.Refresh();
+            //tcClipboard.TabPages[0].Text = "Clipboard";
+            //tcClipboard.TabPages[1].Text = "Settings";
+            //tcClipboard.Refresh();
             
             trayIcon.Visible = true;
 

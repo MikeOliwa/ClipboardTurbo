@@ -20,7 +20,7 @@ namespace ClipboardTurbo.Controller {
 
         //Factory Method
         public static SettingsController Create() {
-            string currentPath = System.IO.File.ReadAllText(@"C:\Users\\mikea\AppData\Roaming\ClipboardTurbo\filepath.txt");
+            string currentPath = System.IO.File.ReadAllText(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\ClipboardTurbo\filepath.txt");
             var controller = new SettingsController(currentPath);
 
             if (File.Exists(Path.Combine(controller._dataFilePath, controller._dataFileName))) {
@@ -42,7 +42,7 @@ namespace ClipboardTurbo.Controller {
         //Methods / Functions
         public void SetFilesDirectory(string newPath) {
 
-            string currentPath = System.IO.File.ReadAllText(@"C:\Users\\mikea\AppData\Roaming\ClipboardTurbo\filepath.txt");
+            string currentPath = System.IO.File.ReadAllText(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\ClipboardTurbo\filepath.txt");
 
             List<string> files = Directory.GetFiles(currentPath).ToList();
             foreach (string file in files) {
@@ -60,7 +60,7 @@ namespace ClipboardTurbo.Controller {
         }
 
         public string GetFilesDirectory() {
-            return File.ReadAllText(@"C:\Users\\mikea\AppData\Roaming\ClipboardTurbo\filepath.txt");
+            return File.ReadAllText(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\ClipboardTurbo\filepath.txt");
         }
 
         public void UpdateSettingValue(Setting settingName, string settingValue) {

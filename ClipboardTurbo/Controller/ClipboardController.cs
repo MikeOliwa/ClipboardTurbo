@@ -23,14 +23,14 @@ namespace ClipboardTurbo.Controller {
         //Factory Method
         public static ClipboardController Create() {
 
-            if (!File.Exists(@"C:\Users\mikea\AppData\Roaming\ClipboardTurbo\filepath.txt")) {
-                Directory.CreateDirectory(@"C:\Users\mikea\AppData\Roaming\ClipboardTurbo");
-                using (StreamWriter sw = File.CreateText(@"C:\Users\mikea\AppData\Roaming\ClipboardTurbo\filepath.txt")) {
-                    sw.Write(@"C:\Users\mikea\AppData\Roaming\ClipboardTurbo");
+            if (!File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\ClipboardTurbo\filepath.txt")) {
+                Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\ClipboardTurbo");
+                using (StreamWriter sw = File.CreateText(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\ClipboardTurbo\filepath.txt")) {
+                    sw.Write(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"ClipboardTurbo");
                 }
             }
 
-            string currentPath = System.IO.File.ReadAllText(@"C:\Users\mikea\AppData\Roaming\ClipboardTurbo\filepath.txt");
+            string currentPath = System.IO.File.ReadAllText(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\ClipboardTurbo\filepath.txt");
             var controller = new ClipboardController(currentPath);
 
             if (File.Exists(Path.Combine(controller._dataFilePath, controller._dataFileName))) {
@@ -45,7 +45,7 @@ namespace ClipboardTurbo.Controller {
         }
 
         //Methods / Functions
-        public void RefreshListView(ListView listView) {
+        public void RefreshListView(ComponentFactory.Krypton.Toolkit.KryptonListBox listView) {
             listView.Items.Clear();
             if (InformationList != null) {
                 foreach (Information information in InformationList) {

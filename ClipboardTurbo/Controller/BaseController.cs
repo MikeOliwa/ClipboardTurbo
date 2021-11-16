@@ -9,7 +9,8 @@ namespace ClipboardTurbo.Controller {
     public class BaseController {
 
         //Fields
-        protected string _pathInfoLocation = @"C:\Users\\mikea\AppData\Roaming\ClipboardTurbo\filepath.txt";
+        protected string _pathInfoLocation2 = @"C:\Users\\mikea\AppData\Roaming\ClipboardTurbo\filepath.txt";
+        protected string _pathInfoLocation = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\ClipboardTurbo";
         protected string _dataFilePath;
         protected string _dataFileName;
         public XmlManager _xmlManager;
