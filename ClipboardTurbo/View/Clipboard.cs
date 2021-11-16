@@ -55,6 +55,11 @@ namespace ClipboardTurbo {
         //Registrieren von Tastenkombinationen
         private void OnKeyboardShortcutChangedEvent(object sender, KeyboardShortcutChangedEventArgs e) {
 
+            if(e.Modifier == Keys.None && e.Key == char.MinValue) {
+                UnregisterHotKey(this.Handle, _hotkeyID);
+                return;
+            }
+
             if (!e.SettingValue.Equals(String.Empty)) {
                 UnregisterHotKey(this.Handle, _hotkeyID);
             }

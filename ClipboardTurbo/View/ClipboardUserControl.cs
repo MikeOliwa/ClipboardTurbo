@@ -74,6 +74,9 @@ namespace ClipboardTurbo.View {
                     btnNew.Enabled = true;
                     btnEdit.Enabled = false;
                     btnDelete.Enabled = false;
+                    tbInformation.Text = String.Empty;
+                    tbValue.Text = String.Empty;
+                    lbNotification.Text = String.Empty;
                     return true;
 
                 case UIState.New:
@@ -85,6 +88,9 @@ namespace ClipboardTurbo.View {
                     btnNew.Enabled = false;
                     btnEdit.Enabled = false;
                     btnDelete.Enabled = false;
+                    tbInformation.Text = String.Empty;
+                    tbValue.Text = String.Empty;
+                    lbNotification.Text = String.Empty;
                     return true;
 
                 case UIState.Edit:
@@ -167,9 +173,6 @@ namespace ClipboardTurbo.View {
             if(result == DialogResult.Yes) {
                 _clipboardController.DeleteInformation(lvInformation.FocusedItem.Index);
                 _clipboardController.RefreshListView(lvInformation);
-                tbInformation.Text = String.Empty;
-                tbValue.Text = String.Empty;
-                lbNotification.Text = String.Empty;
                 WindowUIState = UIState.None;
             }
         }
@@ -177,22 +180,27 @@ namespace ClipboardTurbo.View {
         private void btnApply_Click(object sender, EventArgs e) {
             switch (WindowUIState) {
                 case UIState.New:
-                    if (_clipboardController.AddInformation(_clipboardController.GetNextId(),tbInformation.Text.Trim(), tbValue.Text.Trim())) {
-                        tbInformation.Text = String.Empty;
-                        tbValue.Text = String.Empty;
-                        lbNotification.Text = String.Empty;
+
+                    if(_clipboardController.AddInformation(_clipboardController.GetNextId(), tbInformation.Text.Trim(), tbValue.Text.Trim())) {
+                        WindowUIState = UIState.None;
+                        _clipboardController.RefreshListView(lvInformation);
+                    } else {
+                        WindowUIState = UIState.New;
                     }
-                    _clipboardController.RefreshListView(lvInformation);
-                    WindowUIState = UIState.None;
+
                     break;
 
                 case UIState.Edit:
-                    _clipboardController.EditInformation(lvInformation.FocusedItem.Index,tbInformation.Text.Trim(), tbValue.Text.Trim());
-                    _clipboardController.RefreshListView(lvInformation);
-                    tbInformation.Text = String.Empty;
-                    tbValue.Text = String.Empty;
-                    lbNotification.Text = String.Empty;
-                    WindowUIState = UIState.None;
+                    if (_clipboardController.EditInformation(lvInformation.FocusedItem.Index,tbInformation.Text.Trim(), tbValue.Text.Trim())) {
+                        WindowUIState = UIState.Selected;
+                        int selectedItem = lvInformation.SelectedItems[0].Index;
+                        _clipboardController.RefreshListView(lvInformation);
+                        lvInformation.FocusedItem = lvInformation.Items[selectedItem];
+                        _clipboardController.CopyToClipboard(_clipboardController.GetValueOfInformation(lvInformation.FocusedItem.Index));
+                        lbNotification.Text = $"\"{_clipboardController.GetValueOfInformation(lvInformation.FocusedItem.Index)}\" was sent to your clipboard!";
+                    } else {
+                        WindowUIState = UIState.Edit;
+                    }
                     break;
 
                 default:
@@ -203,10 +211,26 @@ namespace ClipboardTurbo.View {
         }
 
         private void btnCancel_Click(object sender, EventArgs e) {
-            tbInformation.Text = String.Empty;
-            tbValue.Text = String.Empty;
-            lbNotification.Text = String.Empty;
-            WindowUIState = UIState.None;
+
+            var selectedItem = lvInformation.SelectedItems[0];
+
+            switch (WindowUIState) {
+                case UIState.New:
+                    WindowUIState = UIState.None;
+                    break;
+
+                case UIState.Edit:
+                    WindowUIState = UIState.Selected;
+                    lvInformation.FocusedItem = selectedItem;
+                    tbInformation.Text = _clipboardController.GetNameOfInformation(selectedItem.Index);
+                    tbValue.Text = _clipboardController.GetValueOfInformation(selectedItem.Index);
+                    break;
+
+                default:
+                    break;
+
+            }
+
         }
 
         private void tbInformation_TextChanged(object sender, EventArgs e) {
@@ -235,14 +259,11 @@ namespace ClipboardTurbo.View {
 
 
         private void kryptonButton1_Click(object sender, EventArgs e) {
-            DialogResult result = MessageBox.Show($"Delete information \"{lvInformation.FocusedItem.Text}\"?", "Delete information", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+            DialogResult result = MessageBox.Show($"Delete information \"{lvInformation.FocusedItem.Text}\"?","Delete information", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
             WindowUIState = UIState.Delete;
-            if (result == DialogResult.Yes) {
+            if(result == DialogResult.Yes) {
                 _clipboardController.DeleteInformation(lvInformation.FocusedItem.Index);
                 _clipboardController.RefreshListView(lvInformation);
-                tbInformation.Text = String.Empty;
-                tbValue.Text = String.Empty;
-                lbNotification.Text = String.Empty;
                 WindowUIState = UIState.None;
             }
         }

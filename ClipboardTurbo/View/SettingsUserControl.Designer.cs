@@ -90,6 +90,7 @@ namespace ClipboardTurbo.View {
             this.btnKeyboardShortcutReset.TabIndex = 5;
             this.btnKeyboardShortcutReset.Text = "Reset";
             this.btnKeyboardShortcutReset.UseVisualStyleBackColor = true;
+            this.btnKeyboardShortcutReset.Click += new System.EventHandler(this.btnKeyboardShortcutReset_Click);
             // 
             // cbKeepOnTop
             // 

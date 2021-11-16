@@ -193,5 +193,10 @@ namespace ClipboardTurbo.View {
             }
         }
 
+        private void btnKeyboardShortcutReset_Click(object sender, EventArgs e) {
+            KeyboardShortcutChangedEventArgs eventArgs = new KeyboardShortcutChangedEventArgs(Keys.None, char.MinValue, null);
+            _eventManager.RaiseKeyboardShortcutChangedEvent(eventArgs);
+            rtbKeyboardShortcut.Text = String.Empty;
+        }
     }
 }

@@ -47,7 +47,7 @@ namespace ClipboardTurbo.Controller {
         //Methods / Functions
         public void RefreshListView(ListView listView) {
             listView.Items.Clear();
-            if(InformationList != null) {
+            if (InformationList != null) {
                 foreach (Information information in InformationList) {
                     listView.Items.Add(information.Name);
                 }
@@ -55,16 +55,17 @@ namespace ClipboardTurbo.Controller {
         }
 
         public int GetNextId() {
-            if(InformationList.Count == 0) {
+            if (InformationList.Count == 0) {
                 return 0;
-            } else {
-            return InformationList.Last().Id + 1;
+            }
+            else {
+                return InformationList.Last().Id + 1;
             }
         }
 
         public void SetIds() {
             int id = 0;
-            foreach(Information information in InformationList) {
+            foreach (Information information in InformationList) {
                 information.Id = id;
                 id++;
             }
@@ -73,29 +74,40 @@ namespace ClipboardTurbo.Controller {
 
         public bool AddInformation(int id, string name, string value) {
             InformationList = _xmlManager.ReadInformation<Information>();
-            Information information = new Information {Id = id, Name = name, Value = value };
+            Information information = new Information { Id = id, Name = name, Value = value };
 
             if (!CheckInformationExists(information)) {
                 InformationList.Add(information);
                 _xmlManager.WriteInformation(InformationList);
                 return true;
-            } else {
-                MessageBox.Show($"Information ({name}) already exists.","Duplicate information",MessageBoxButtons.OK,MessageBoxIcon.Information);
+            }
+            else {
+                MessageBox.Show($"Information ({name}) already exists.", "Duplicate information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return false;
             }
         }
 
-        public bool EditInformation(int id,string name, string value) {
+        public bool EditInformation(int id, string name, string value) {
             InformationList = _xmlManager.ReadInformation<Information>();
-            foreach (Information information in InformationList){
-                if (information.Id == id) {
-                    information.Name = name;
-                    information.Value = value;
-                    _xmlManager.WriteInformation(InformationList);
-                    return true;
+            Information editedInformation = new Information { Id = id, Name = name, Value = value };
+
+            if (!CheckInformationExists(editedInformation)) {
+                foreach (Information information in InformationList) {
+                    if (information.Id == id) {
+                        information.Name = name;
+                        information.Value = value;
+                        _xmlManager.WriteInformation(InformationList);
+                        return true;
+                    }
                 }
+                return false;
             }
-            return false;
+            else {
+                MessageBox.Show($"Information ({name}) already exists.", "Duplicate information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return false;
+            }
+
+
         }
 
         public bool DeleteInformation(int id) {
@@ -118,17 +130,28 @@ namespace ClipboardTurbo.Controller {
 
         private bool CheckInformationExists(Information informationToInsert) {
             foreach (Information information in InformationList) {
-                if(information.Name == informationToInsert.Name) {
+                if (information.Id != informationToInsert.Id && information.Name == informationToInsert.Name) {
                     return true;
-                } 
+                }
             }
             return false;
         }
 
+        public string GetNameOfInformation(int id) {
+            string result = String.Empty;
+            foreach (Information information in InformationList) {
+                if (information.Id == id) {
+                    result = information.Name;
+                    CopyToClipboard(result);
+                }
+            }
+            return result;
+        }
+
         public string GetValueOfInformation(int id) {
             string result = String.Empty;
-            foreach(Information information in InformationList) {
-                if(information.Id == id) {
+            foreach (Information information in InformationList) {
+                if (information.Id == id) {
                     result = information.Value;
                     CopyToClipboard(result);
                 }
@@ -137,11 +160,11 @@ namespace ClipboardTurbo.Controller {
         }
 
         public void CopyToClipboard(string text) {
-            if(text != null || text.Equals(String.Empty)) {
+            if (text != null || text.Equals(String.Empty)) {
                 System.Windows.Forms.Clipboard.SetText(text);
             }
         }
 
     }
-} 
+}
 
