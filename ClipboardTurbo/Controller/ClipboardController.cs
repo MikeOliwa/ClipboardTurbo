@@ -26,7 +26,7 @@ namespace ClipboardTurbo.Controller {
             if (!File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\ClipboardTurbo\filepath.txt")) {
                 Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\ClipboardTurbo");
                 using (StreamWriter sw = File.CreateText(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\ClipboardTurbo\filepath.txt")) {
-                    sw.Write(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"ClipboardTurbo");
+                    sw.Write(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\ClipboardTurbo");
                 }
             }
 

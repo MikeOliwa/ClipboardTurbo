@@ -20,6 +20,7 @@ namespace ClipboardTurbo.View {
         //other members
         private UIState _uiState;
 
+ 
         //Properties
         public UIState WindowUIState {
             get {
