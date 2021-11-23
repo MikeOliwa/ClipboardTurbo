@@ -142,9 +142,7 @@ namespace ClipboardTurbo.View {
         }
 
         private void rtbKeyboardShortcut_TextChanged(object sender, EventArgs e) {
-            if (!rtbKeyboardShortcut.Text.Equals(String.Empty)) {
                 _settingsController.UpdateSettingValue(Setting.KeyboardShortcut, rtbKeyboardShortcut.Text);
-            }
         }
 
         private void cbKeepOnTop_CheckedChanged(object sender, EventArgs e) {

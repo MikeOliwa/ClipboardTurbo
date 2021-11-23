@@ -66,11 +66,15 @@ namespace ClipboardTurbo.Controller {
         public void UpdateSettingValue(Setting settingName, string settingValue) {
 
             SettingsList = _xmlManager.ReadInformation<Configuration>();
+            if (settingValue.Equals(String.Empty)) {
+                settingValue = "";
+            }
 
-            foreach(Configuration config in SettingsList) {
+            foreach (Configuration config in SettingsList) {
 
                 if(config.Setting == settingName) {
                     switch (settingName) {
+
                         case Setting.KeyboardShortcut:
                             SettingsList.First<Configuration>(item => item.Setting == Setting.KeyboardShortcut).Value = settingValue;
                             _xmlManager.WriteInformation(SettingsList);
