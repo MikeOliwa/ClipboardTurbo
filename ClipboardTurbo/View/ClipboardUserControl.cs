@@ -17,26 +17,24 @@ namespace ClipboardTurbo.View {
         //Event manager
         private ClipboardTurbo.Events.EventManager _eventManager;
 
-        //other members
-        private UIState _uiState;
+        //other fields
+        private UIState _windowUIState;
 
- 
         //Properties
         public UIState WindowUIState {
-            get {
-                return _uiState;
-            }
+            get { return _windowUIState; } 
+
             set {
-                if (_uiState != value) {
-                    _uiState = value;
-                    _eventManager.RaiseUIStateChangedEvent(_uiState);
+                if (_windowUIState != value) {
+                    _windowUIState = value;
+                    _eventManager.RaiseUIStateChangedEvent(WindowUIState);
                 }
             }
         }
 
 
-        private void OnUIStateChangedEvent(object sender, UIState uiMode) {
-            UpdateUI(ref _uiState,uiMode);
+        private void OnUIStateChangedEvent(object sender, UIState uiState) {
+            UpdateUI(uiState);
         }
 
         //Construktor
@@ -64,9 +62,8 @@ namespace ClipboardTurbo.View {
         }
 
         // Methods / Functions
-        private bool UpdateUI(ref UIState ui, UIState state) {
-            ui = state;
-            switch(ui){
+        private bool UpdateUI(UIState state) {
+            switch(state){
                 case UIState.None:
                     lvInformation.Enabled = true;
                     tbInformation.Enabled = false;
@@ -149,7 +146,7 @@ namespace ClipboardTurbo.View {
         private void lvInformation_SelectedIndexChanged(object sender, EventArgs e) {
             if (lvInformation.SelectedItems.Count == 1) {
                 tbInformation.Text = lvInformation.SelectedItem.ToString();
-                UpdateUI(ref _uiState, UIState.Selected);
+                WindowUIState = UIState.Selected;
                 string value = _clipboardController.GetValueOfInformation(lvInformation.Items.IndexOf(lvInformation.SelectedItems[0]));
                 tbValue.Text = value;
                 lbNotification.Text = $"\"{value}\" was sent to your clipboard!";

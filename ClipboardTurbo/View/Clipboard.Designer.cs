@@ -195,6 +195,7 @@ namespace ClipboardTurbo {
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(59)))), ((int)(((byte)(59)))));
             this.ClientSize = new System.Drawing.Size(606, 616);
             this.Controls.Add(this.kryptonNavigator1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MaximizeBox = false;
             this.Name = "Clipboard";
             this.Palette = this.kryptonPalette1;
