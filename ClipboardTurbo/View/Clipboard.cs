@@ -65,6 +65,7 @@ namespace ClipboardTurbo {
                 UnregisterHotKey(this.Handle, _hotkeyID);
             }
 
+
             //Modifier key codes: Alt = 1, Ctrl = 2, Shift = 4, Win = 8
             int modifierKey = 0;
 
@@ -82,7 +83,13 @@ namespace ClipboardTurbo {
                     modifierKey = 8;
                     break;
             }
-            RegisterHotKey(this.Handle, _hotkeyID, modifierKey, (int)e.SettingValue.ElementAt<char>(e.SettingValue.Length-1));
+
+            try {
+                RegisterHotKey(this.Handle, _hotkeyID, modifierKey, (int)e.SettingValue.ElementAt<char>(e.SettingValue.Length-1));
+            } catch (ArgumentOutOfRangeException ex){
+                MessageBox.Show("Use a Modifier key as the first key (ALT/SHIFT/CTRL)","Warning", MessageBoxButtons.OK,MessageBoxIcon.Warning);
+            }
+
         }
 
         //Control-Actions
