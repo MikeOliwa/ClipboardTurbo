@@ -15,10 +15,10 @@ Click on the "Settings" tab to change following settings:
 ![image](https://user-images.githubusercontent.com/61050719/150850218-ce2f9642-9eb9-4863-8e1d-5997d6b8d614.png)
 
 - "Path of application files": The standard path is already set into your appdata folder. You can change this to any path you want.
-- "Keyboard Shortcut": Click into the textbox and type in a keyboard combination like "ALT + P" or "SHIFT + M"  (Modifier + Key). You can then use this combination to bring Clipboard Turbo to the foreground anytime!
+- "Keyboard shortcut": Click into the textbox and type in a keyboard combination like "ALT + P" or "SHIFT + M"  (Modifier + Key). You can then use this combination to bring Clipboard Turbo to the foreground anytime!
 - "Keep window on top": Check this if you want Clipboard Turbo to stay in the foreground all the time. For example this is useful when filling out a formular in a webbrowser and you want Clipboard Turbo to stay on top while you copy and paste values.
 - "Start with Windows": Check this if you want Clipboard Turbo to start with Windows.
 
-Tip: Check both "Keep window on top" and "Start with Windows" and you can use your keyboard shortcut anytime to bring up Clipboard Turbo without bothering to start the application manually before.
+Tip: Use both "Keyboard shortcut" and "Start with Windows" and you can use your keyboard shortcut anytime to bring up Clipboard Turbo without bothering to start the application manually before.
 
 - "Empty whole list": Only use that button if you want to delete all your information data.
