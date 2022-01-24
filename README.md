@@ -1,4 +1,4 @@
-# ClipboardTurbo
+# Clipboard Turbo
 Clipboard Turbo is a tool to establish a collection of often used information e.g. name, address, e-mail address. The user can then send these information to his clipboard, with only one click.
 
 - The list consists of information - value pairs
@@ -22,3 +22,8 @@ Click on the "Settings" tab to change following settings:
 Tip: Use both "Keyboard shortcut" and "Start with Windows" and you can use your keyboard shortcut anytime to bring up Clipboard Turbo without bothering to start the application manually before.
 
 - "Empty whole list": Only use that button if you want to delete all your information data.
+
+- When closing Clipboard Turbo, it gets minimized and moved to background. Only then the keyboard shortcut works.
+
+![image](https://user-images.githubusercontent.com/61050719/150855454-a1156206-156d-47a4-aa9a-169214819b20.png)
+
