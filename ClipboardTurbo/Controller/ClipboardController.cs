@@ -15,7 +15,7 @@ namespace ClipboardTurbo.Controller {
         //Fields
         List<Information> InformationList = new List<Information> { };
 
-        //Construktor
+        //Constructor
         private ClipboardController(string currentPath)
             : base(currentPath, "ClipboardTurbo_Data.xml") {
         }
@@ -38,6 +38,10 @@ namespace ClipboardTurbo.Controller {
                 controller._xmlManager.WriteInformation(controller.InformationList);
             }
             else {
+                //Add sample data on first startup
+                controller.InformationList.Add(new Information { Id = 0, Name = "My email address", Value = "sample@email.com" });
+                controller.InformationList.Add(new Information { Id = 1, Name = "My identity card number", Value = "XX6RD4XFK" });
+                controller.InformationList.Add(new Information { Id = 2, Name = "password I always forget", Value = "veryL0ngpw321!!Utek44" });
                 controller._xmlManager.WriteInformation(controller.InformationList);
             }
 
@@ -76,7 +80,7 @@ namespace ClipboardTurbo.Controller {
             InformationList = _xmlManager.ReadInformation<Information>();
             Information information = new Information { Id = id, Name = name, Value = value };
 
-            if (!CheckInformationExists(information)) {
+            if (!InformationExists(information)) {
                 InformationList.Add(information);
                 _xmlManager.WriteInformation(InformationList);
                 return true;
@@ -91,16 +95,14 @@ namespace ClipboardTurbo.Controller {
             InformationList = _xmlManager.ReadInformation<Information>();
             Information editedInformation = new Information { Id = id, Name = name, Value = value };
 
-            if (!CheckInformationExists(editedInformation)) {
-                foreach (Information information in InformationList) {
-                    if (information.Id == id) {
-                        information.Name = name;
-                        information.Value = value;
-                        _xmlManager.WriteInformation(InformationList);
-                        return true;
-                    }
-                }
-                return false;
+            if (!InformationExists(editedInformation)) {
+                Information information = InformationList.SingleOrDefault(x => x.Id == id);
+
+                information.Name = name;
+                information.Value = value;
+                _xmlManager.WriteInformation(InformationList);
+                return true;
+
             }
             else {
                 MessageBox.Show($"Information ({name}) already exists.", "Duplicate information", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -112,15 +114,14 @@ namespace ClipboardTurbo.Controller {
 
         public bool DeleteInformation(int id) {
             InformationList = _xmlManager.ReadInformation<Information>();
-            foreach (Information information in InformationList) {
-                if (information.Id == id) {
-                    InformationList.RemoveAt(id);
-                    SetIds();
-                    _xmlManager.WriteInformation(InformationList);
-                    return true;
-                }
-            }
-            return false;
+
+            Information informationToDelete = InformationList.SingleOrDefault(x => x.Id == id);
+            if (informationToDelete == null) return false;
+            InformationList.RemoveAt(informationToDelete.Id);
+            SetIds();
+            _xmlManager.WriteInformation(InformationList);
+            return true;
+
         }
 
         public void CleanInformation() {
@@ -128,34 +129,31 @@ namespace ClipboardTurbo.Controller {
             _xmlManager.WriteInformation(InformationList);
         }
 
-        private bool CheckInformationExists(Information informationToInsert) {
-            foreach (Information information in InformationList) {
-                if (information.Id != informationToInsert.Id && information.Name == informationToInsert.Name) {
-                    return true;
-                }
+        private bool InformationExists(Information informationToInsert) {
+
+            Information existingInformation = InformationList.SingleOrDefault(x => x.Id != informationToInsert.Id && x.Name == informationToInsert.Name);
+            if(existingInformation != null) {
+                return true;
+            } else {
+                //return false if existingInformation is null
+                return false;
             }
-            return false;
         }
 
-        public string GetNameOfInformation(int id) {
+        public string GetInformationName(int id) {
             string result = String.Empty;
-            foreach (Information information in InformationList) {
-                if (information.Id == id) {
-                    result = information.Name;
-                    CopyToClipboard(result);
-                }
-            }
+
+            Information information = InformationList.SingleOrDefault(x => x.Id == id);
+            result = information.Name;
+            CopyToClipboard(result);
             return result;
         }
 
-        public string GetValueOfInformation(int id) {
+        public string GetInformationValue(int id) {
             string result = String.Empty;
-            foreach (Information information in InformationList) {
-                if (information.Id == id) {
-                    result = information.Value;
-                    CopyToClipboard(result);
-                }
-            }
+            Information information = InformationList.SingleOrDefault(x => x.Id == id);
+            result = information.Value;
+            CopyToClipboard(result);
             return result;
         }
 

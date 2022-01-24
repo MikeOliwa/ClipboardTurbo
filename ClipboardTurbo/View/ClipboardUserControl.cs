@@ -147,7 +147,7 @@ namespace ClipboardTurbo.View {
             if (lvInformation.SelectedItems.Count == 1) {
                 tbInformation.Text = lvInformation.SelectedItem.ToString();
                 WindowUIState = UIState.Selected;
-                string value = _clipboardController.GetValueOfInformation(lvInformation.Items.IndexOf(lvInformation.SelectedItems[0]));
+                string value = _clipboardController.GetInformationValue(lvInformation.Items.IndexOf(lvInformation.SelectedItems[0]));
                 tbValue.Text = value;
                 lbNotification.Text = $"\"{value}\" was sent to your clipboard!";
             } else if (lvInformation.SelectedItems.Count > 1) {
@@ -195,8 +195,8 @@ namespace ClipboardTurbo.View {
                         int selectedItem = lvInformation.Items.IndexOf(lvInformation.SelectedItems[0]);
                         _clipboardController.RefreshListView(lvInformation);
                         lvInformation.SelectedItem = lvInformation.Items[selectedItem];
-                        _clipboardController.CopyToClipboard(_clipboardController.GetValueOfInformation(lvInformation.Items.IndexOf(lvInformation.SelectedItems[0])));
-                        lbNotification.Text = $"\"{_clipboardController.GetValueOfInformation(lvInformation.Items.IndexOf(lvInformation.SelectedItems[0]))}\" was sent to your clipboard!";
+                        _clipboardController.CopyToClipboard(_clipboardController.GetInformationValue(lvInformation.Items.IndexOf(lvInformation.SelectedItems[0])));
+                        lbNotification.Text = $"\"{_clipboardController.GetInformationValue(lvInformation.Items.IndexOf(lvInformation.SelectedItems[0]))}\" was sent to your clipboard!";
                     } else {
                         WindowUIState = UIState.Edit;
                     }
@@ -220,8 +220,8 @@ namespace ClipboardTurbo.View {
                     var selectedItem = lvInformation.SelectedItems[0];
                     WindowUIState = UIState.Selected;
                     lvInformation.SelectedItem = selectedItem;
-                    tbInformation.Text = _clipboardController.GetNameOfInformation(lvInformation.Items.IndexOf(selectedItem));
-                    tbValue.Text = _clipboardController.GetValueOfInformation(lvInformation.Items.IndexOf(selectedItem));
+                    tbInformation.Text = _clipboardController.GetInformationName(lvInformation.Items.IndexOf(selectedItem));
+                    tbValue.Text = _clipboardController.GetInformationValue(lvInformation.Items.IndexOf(selectedItem));
                     break;
 
                 default:
